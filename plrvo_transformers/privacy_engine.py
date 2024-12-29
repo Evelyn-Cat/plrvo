@@ -137,7 +137,6 @@ class PrivacyEngine(object):
             noise_multiplier = manager.compute_sigma(
                 target_epsilon=target_epsilon, target_delta=target_delta, sample_rate=sample_rate, epochs=epochs,
             )
-            noise_multiplier = None
 
         self.batch_size = batch_size
         self.sample_size = sample_size
@@ -146,7 +145,7 @@ class PrivacyEngine(object):
 
         self.epochs = epochs
         self.noise_multiplier = noise_multiplier
-        self.effective_noise_multiplier = None # noise_multiplier / batch_size
+        self.effective_noise_multiplier = noise_multiplier / batch_size
         self.target_epsilon = target_epsilon
         self.target_delta = target_delta
         self.alphas = alphas
@@ -353,7 +352,7 @@ class PrivacyEngine(object):
 
         if self.record_snr and len(noises) > 0:
             self.signal, self.noise = tuple(torch.stack(lst).norm(2).item() for lst in (signals, noises))
-            self.noise_limit = None # math.sqrt(self.num_params) * self.noise_multiplier * self.max_grad_norm
+            self.noise_limit = math.sqrt(self.num_params) * self.noise_multiplier * self.max_grad_norm
             self.snr = self.signal / self.noise
         else:
             self.snr = math.inf  # Undefined!
@@ -541,15 +540,14 @@ class PrivacyEngine(object):
         if accounting_mode in (AccountingMode.all_, AccountingMode.rdp):
             try:
                 manager = accounting_manager.RDPManager(alphas=self.alphas)
-                # TODO plrvo accountant
-                # privacy_results.update(
-                #     manager.compute_epsilon(
-                #         sigma=self.noise_multiplier,
-                #         sample_rate=self.sample_rate,
-                #         target_delta=self.target_delta,
-                #         steps=steps,
-                #     )
-                # )
+                privacy_results.update(
+                    manager.compute_epsilon(
+                        sigma=self.noise_multiplier,
+                        sample_rate=self.sample_rate,
+                        target_delta=self.target_delta,
+                        steps=steps,
+                    )
+                )
             except Exception as err:
                 logging.fatal("RDP accounting failed! Double check privacy parameters.")
                 if not lenient:

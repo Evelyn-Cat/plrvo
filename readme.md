@@ -1,3 +1,1 @@
-## set parameters in run.sh and then "bash run.sh"
-
-
+## set parameters in scripts/run.sh and then "cd scripts" and "bash run.sh"

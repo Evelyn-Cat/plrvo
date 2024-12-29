@@ -1,8 +1,11 @@
+cache
 examples/log*
+examples/auditing/*
 examples/cache/*
 examples/classification/data/original
 examples/classification/data/datasets.tar
-examples/table2text/data/prefix-tuning
+examples/table2text/prefix-tuning/data
+examples/ok.*
 plrvo_search/*
 private_transformers2/*
 results/*
@@ -10,6 +13,8 @@ scripts/results/*
 record.txt
 todo
 running*sh
+old
+tests/*
 
 .vscode/
 .idea/

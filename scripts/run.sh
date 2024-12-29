@@ -16,15 +16,15 @@
 # output folder name (if needed): $output_dir
 
 #### 1 choose noise type
-noise_type=non
-noise_type=Gaussian
+# noise_type=non
+# noise_type=Gaussian
 # noise_type=Laplace
 noise_type=PLRVO
 
 #### 2 setting hyperparamters (applicable for each noise type)
 gpu_id=0
 # per_device_train_batch_size=170 # classification task: 170 on datasec; 340 on datasec2;
-per_device_train_batch_size=16 # generation task: 16
+per_device_train_batch_size=200 # generation task: 200 [gpt2]
 per_example_max_grad_norm=3  # clipping threshold C
 batch_size=1024
 
@@ -57,18 +57,23 @@ esac
 # array_modelname=(roberta-base bert-base-uncased)
 # array_modelname=(roberta-base)
 # array_modelname=(roberta-large bert-large-uncased roberta-base bert-base-uncased)
-array_modelname=(gpt2) # distilgpt2, gpt2, gpt2-medium, gpt2-large
+# array_modelname=(distilgpt2) # distilgpt2, gpt2, gpt2-medium, gpt2-large
+array_modelname=(vit)
 ## [fine-tuning] running nlp classification task
 # taskname=sst-2
 # taskname=qnli
 # taskname=mnli
 # taskname=qqp
 ## [training] running nlp generation task
-taskname=e2e
+# taskname=e2e # TODO
 # taskname=dart
 ## [training] running cv task
-# taskname=cifar10
-# taskname=mnist
+# taskname=cifar100
+taskname=cifar10
+# taskname=mnist # kmnist fmnist
+# taskname=svhn
+# taskname=cinic10 # cinic # https://github.com/BayesWatch/cinic-10#data-loading
+
 
 ### automatically choose the script to run
 case $taskname in
@@ -94,7 +99,8 @@ for modelname in "${array_modelname[@]}"; do
         target_epsilon=$config_idx
     fi
     
-    bash run_${task_type}.sh $gpu_id $per_device_train_batch_size $taskname $modelname $noise_type $target_epsilon $per_example_max_grad_norm $batch_size $output_dir
+    # bash run_${task_type}.sh $gpu_id $per_device_train_batch_size $taskname $modelname $noise_type $target_epsilon $per_example_max_grad_norm $batch_size $output_dir
+    bash running.sh $gpu_id $per_device_train_batch_size $taskname $modelname $noise_type $target_epsilon $per_example_max_grad_norm $batch_size $output_dir
     wait
 done
 

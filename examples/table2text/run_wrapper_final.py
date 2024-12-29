@@ -36,10 +36,10 @@ def _get_command(
     if data_dir is None:
         current_directory = os.path.dirname(os.path.abspath(__file__))
         foldername = "e2e_data" if task_name == "e2e" else "dart"
-        data_dir = os.path.join(current_directory, "data/prefix-tuning/data", foldername)
-
+        data_dir = f"table2text/prefix-tuning/data/{foldername}"
+    
     cmd = f'''
-CUDA_VISIBLE_DEVICES={gpu_id} python -m table2text.run_language_modeling_final \
+CUDA_VISIBLE_DEVICES={gpu_id} python -m table2text.run_language_modeling \
   --per_device_train_batch_size {per_device_train_batch_size} --tokenizer_name {model_name_or_path} \
   --task_mode {task_name} --model_name_or_path {model_name_or_path} \
   --noise_type {noise_type} --target_epsilon {target_epsilon} --per_example_max_grad_norm {per_example_max_grad_norm}  \
@@ -48,18 +48,17 @@ CUDA_VISIBLE_DEVICES={gpu_id} python -m table2text.run_language_modeling_final \
   --learning_rate {learning_rate} --clipping_mode {clipping_mode} --data_folder {data_dir} \
   --seed {seed} --eval_steps 100 --lr_decay "no" --max_seq_len {max_seq_len} --do_train --do_eval \
   --per_device_eval_batch_size 100 --evaluation_strategy epoch --evaluate_before_training True --evaluate_during_training "yes" \
-  --line_by_line --save_steps 100 --save_total_limit 1 --save_at_last yes \
+  --line_by_line --save_steps 100 --save_total_limit 1 --save_at_last no \
   --logging_dir {output_dir} --logging_steps -1 --eval_epochs 2 --max_eval_batches 100 \
   --max_generations 9223372036854775807 --max_generations_train 10 --max_generations_valid 9223372036854775807 \
   --max_train_examples 9223372036854775807 --max_valid_examples 9223372036854775807 --max_eval_examples 9223372036854775807 \
-  --format_mode cat --cache_dir cache'''
-
+  --format_mode cat --cache_dir ../cache'''
     return cmd
 
 
 def main(
     gpu_id=0,
-    per_device_train_batch_size=16,
+    per_device_train_batch_size=200,
     task_name="e2e",
     model_name_or_path="gpt2", # distilgpt2, gpt2, gpt2-medium, gpt2-large
     noise_type="Gaussian",

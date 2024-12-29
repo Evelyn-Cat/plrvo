@@ -36,7 +36,8 @@ if [ ! -d "$output_dir" ]; then
     mkdir -p "$output_dir"
     echo "Directory $output_dir created."
 else
-    echo "Directory $output_dir already exists. Exiting..."
+    echo "Directory already exists. Exiting..."
+    echo $output_dir
     exit 0
 fi
 echo "The output directory is $output_dir"

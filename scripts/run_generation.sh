@@ -37,7 +37,8 @@ if [ ! -d "$output_dir" ]; then
     mkdir -p "$output_dir"
     echo "Directory $output_dir created."
 else
-    echo "Directory $output_dir already exists. Exiting..."
+    echo "Directory already exists. Exiting..."
+    echo $output_dir
     exit 0
 fi
 echo "The output directory is $output_dir"
@@ -52,6 +53,12 @@ echo "gradient_accumulation_steps is $gradient_accumulation_steps"
 
 #### 4 running the tasks
 cd ../examples/
+
+export MASTER_ADDR='localhost'
+export MASTER_PORT='12355'
+export WORLD_SIZE=1
+export RANK=0  # For the master process
+
 python -m table2text.run_wrapper_final \
     --gpu_id $gpu_id \
     --per_device_train_batch_size $per_device_train_batch_size \

@@ -23,6 +23,7 @@ using a masked language modeling (MLM) loss. XLNet is fine-tuned using a permuta
 import json
 import logging
 import os
+from datetime import datetime
 
 import torch
 from ml_swissknife import utils
@@ -35,7 +36,6 @@ current_dir = os.path.dirname(current_file_path)
 import sys; sys.path.append("..")
 os.environ["TRANSFORMERS_CACHE"] = os.path.join(current_dir, "..", "cache")
 
-from private_transformers import PrivacyEngine
 from .compiled_args import (AuxiliaryArguments, DataTrainingArguments, ModelArguments, PrivacyArguments,
                             TrainingArguments)
 from .misc import get_all_datasets, get_prompt_dataset
@@ -46,12 +46,39 @@ logger = logging.getLogger(__name__)
 MODEL_CONFIG_CLASSES = list(MODEL_WITH_LM_HEAD_MAPPING.keys())
 MODEL_TYPES = tuple(conf.model_type for conf in MODEL_CONFIG_CLASSES)
 
+os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 
 def main():
     parser = HfArgumentParser(
         (ModelArguments, DataTrainingArguments, TrainingArguments, PrivacyArguments, AuxiliaryArguments)
     )
     model_args, data_args, training_args, privacy_args, auxiliary_args = parser.parse_args_into_dataclasses()
+    training_args.local_rank = -1
+    
+
+    if privacy_args.noise_type == "PLRVO":
+        print("confirm imported PLRVO")
+        from plrvo_transformers import PrivacyEngine
+        assert privacy_args.config_idx != None
+    elif privacy_args.noise_type == "Gaussian":
+        print("confirm imported Gaussian")
+        from private_transformers import PrivacyEngine
+    elif privacy_args.noise_type == "Laplace":
+        print("confirm imported Laplace")
+        from prv_accountant import PRVAccountant # https://github.com/microsoft/prv_accountant
+        # https://github.com/google/differential-privacy/blob/main/python/dp_accounting/dp_accounting/pld/privacy_loss_distribution_basic_example.py
+    else:
+        print("confirm running non-private")
+        assert privacy_args.noise_type == "non"
+        
+    import torch
+    print(privacy_args.noise_type)
+    print(privacy_args.config_idx)
+    print("CUDA Available:", torch.cuda.is_available())
+    print("CUDA Device Count:", torch.cuda.device_count())
+    print("Current Device:", torch.cuda.current_device())
+    print("Device Name:", torch.cuda.get_device_name(0) if torch.cuda.is_available() else "None")
+    
 
     model_args: ModelArguments
     data_args: DataTrainingArguments
@@ -119,7 +146,7 @@ def main():
     )
     print(f'base gpt2 model: {model_args.model_name_or_path}')
     print(gpt2)
-
+    
     # Clone the embedding into the lm_head for better initialization.
     lm_head = gpt2.get_output_embeddings()
     embedding = gpt2.get_input_embeddings()
@@ -171,7 +198,7 @@ def main():
     print('embedding size', gpt2.get_input_embeddings().weight.size())
     print('lm_head size', gpt2.get_output_embeddings().weight.size())
     model = gpt2
-
+    
     train_dataset, val_dataset, eval_dataset, data_collator = get_all_datasets(
         config=config,
         tokenizer=tokenizer,
@@ -186,7 +213,7 @@ def main():
         val_prompts=get_prompt_dataset(file_path=data_args.val_prompt_file, tokenizer=tokenizer),
         eval_prompts=get_prompt_dataset(file_path=data_args.eval_prompt_file, tokenizer=tokenizer),
     )
-
+    
     trainer = Trainer(
         model=model,
         tokenizer=tokenizer,
@@ -201,7 +228,7 @@ def main():
         data_collator=data_collator,
         generation_stuff=generation_stuff,
     )
-
+    
     # Massage the parameters.
     if model_args.attention_only:
         model.requires_grad_(False)
@@ -261,6 +288,8 @@ def main():
             target_delta=privacy_args.target_delta,
             accounting_mode=privacy_args.accounting_mode,
             clipping_mode=privacy_args.clipping_mode,
+            noise_type=privacy_args.noise_type,
+            config_idx=privacy_args.config_idx
         )
         # Originally, these could have been null.
         privacy_args.noise_multiplier = privacy_engine.noise_multiplier
@@ -315,4 +344,17 @@ def main():
 
 
 if __name__ == "__main__":
+    import time
+    start_time = time.time()
+
+    readable_time = datetime.fromtimestamp(start_time)
+    print(f"running stars at {readable_time}")
+
     main()
+
+    end_time = time.time()
+
+    elapsed_time = end_time - start_time
+    hours = elapsed_time / 3600
+    print(f"running time: {elapsed_time:.2f} seconds... [about {hours} hours]")
+
