@@ -57,19 +57,19 @@ esac
 # array_modelname=(roberta-base bert-base-uncased)
 # array_modelname=(roberta-base)
 # array_modelname=(roberta-large bert-large-uncased roberta-base bert-base-uncased)
-# array_modelname=(distilgpt2) # distilgpt2, gpt2, gpt2-medium, gpt2-large
-array_modelname=(vit)
+array_modelname=(distilgpt2) # distilgpt2, gpt2, gpt2-medium, gpt2-large
+# array_modelname=(vit)
 ## [fine-tuning] running nlp classification task
 # taskname=sst-2
 # taskname=qnli
 # taskname=mnli
 # taskname=qqp
 ## [training] running nlp generation task
-# taskname=e2e # TODO
+taskname=e2e # TODO
 # taskname=dart
 ## [training] running cv task
 # taskname=cifar100
-taskname=cifar10
+# taskname=cifar10
 # taskname=mnist # kmnist fmnist
 # taskname=svhn
 # taskname=cinic10 # cinic # https://github.com/BayesWatch/cinic-10#data-loading

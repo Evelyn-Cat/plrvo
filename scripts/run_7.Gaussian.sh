@@ -17,8 +17,8 @@
 
 #### 1 choose noise type
 # noise_type=non
-# noise_type=Gaussian
-noise_type=Laplace
+noise_type=Gaussian
+# noise_type=Laplace
 # noise_type=PLRVO
 
 #### 2 setting hyperparamters (applicable for each noise type)
