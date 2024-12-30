@@ -1,0 +1,18 @@
+{
+    "target_epsilon": 1.3879991435149321,
+    "distortion_PLRV": 2.0027028581287016,
+    "target_delta": 7.4240152043831385e-06,
+    "C": 3.0,
+    "sample_rate": 0.015204383138576668,
+    "G_k": 150.0,
+    "G_theta": 0.003351175821581542,
+    "steps": 197.0,
+    "diff_dist": 0.7157179068177442,
+    "a_G": 1,
+    "distributions": [
+        "Gamma"
+    ],
+    "epsilon": 1.334832374462971,
+    "distortion_Gaussian": 2.718420764946446,
+    "sigma": 3.407035175879397
+}

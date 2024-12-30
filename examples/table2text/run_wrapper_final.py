@@ -42,7 +42,7 @@ CUDA_VISIBLE_DEVICES={gpu_id} python -m table2text.run_language_modeling \
   --per_device_train_batch_size {per_device_train_batch_size} --tokenizer_name {model_name_or_path} \
   --task_mode {task_name} --model_name_or_path {model_name_or_path} \
   --noise_type {noise_type} --config_idx {config_idx} --per_example_max_grad_norm {per_example_max_grad_norm}  \
-  --non_private {non_private} --config_idx {config_idx} --output_dir {output_dir} --overwrite_output_dir \
+  --non_private {non_private} --output_dir {output_dir} --overwrite_output_dir \
   --gradient_accumulation_steps {gradient_accumulation_steps} --num_train_epochs {num_train_epochs} \
   --learning_rate {learning_rate} --clipping_mode {clipping_mode} --data_folder {data_dir} \
   --seed {seed} --eval_steps 100 --lr_decay "no" --max_seq_len {max_seq_len} --do_train --do_eval \
@@ -71,6 +71,7 @@ def main(
     few_shot_type="finetune", # "prompt"
     data_dir=None,
     seed=42,
+    non_private="yes",
 ):
     non_private="yes" if noise_type == "non" else "no"
     if non_private:

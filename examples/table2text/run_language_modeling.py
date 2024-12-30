@@ -56,20 +56,20 @@ def main():
     training_args.local_rank = -1
     
 
-    if privacy_args.noise_type == "PLRVO":
+    if privacy_args.noise_type == "PLRVO" or privacy_args.noise_type == "Gaussian":
         print("confirm imported PLRVO")
-        from plrvo_transformers import PrivacyEngine
-        assert privacy_args.config_idx != None
-    elif privacy_args.noise_type == "Gaussian":
-        print("confirm imported Gaussian")
-        from private_transformers import PrivacyEngine
+        from plrvo_transformers import PrivacyEngine 
+        from private_transformers import freeze_isolated_params_for_vit
+        assert privacy_args.config_idx > 0
     elif privacy_args.noise_type == "Laplace":
         print("confirm imported Laplace")
         from prv_accountant import PRVAccountant # https://github.com/microsoft/prv_accountant
         # https://github.com/google/differential-privacy/blob/main/python/dp_accounting/dp_accounting/pld/privacy_loss_distribution_basic_example.py
     else:
+        assert privacy_args.config_idx == 0
         print("confirm running non-private")
-        assert privacy_args.noise_type == "non"
+        assert privacy_args.config_idx == "non"
+
         
     import torch
     print(privacy_args.noise_type)

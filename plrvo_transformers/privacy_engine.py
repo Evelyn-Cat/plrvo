@@ -101,8 +101,10 @@ class PrivacyEngine(object):
             eps_error: Error threshold for upper and lower bound in the GLW accounting procedure.
             skip_checks: Skips the model type validation test if True.
         """
-        import json
-        jsonfile = f"../plrvo/configs/{int(target_epsilon)}.json"
+        import os, json
+        current_file_path = os.path.abspath(__file__)
+        current_dir = os.path.dirname(current_file_path) 
+        jsonfile = os.path.join(current_dir, "..", "plrvo", "configs", f"{int(config_idx)}.json")
         with open(jsonfile, 'r') as f:
             config = json.load(f)
         self.config = config

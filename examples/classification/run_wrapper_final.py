@@ -64,7 +64,7 @@ CUDA_VISIBLE_DEVICES={gpu_id} python -m classification.run_classification_final 
   --per_device_train_batch_size {per_device_train_batch_size} \
   --task_name {task_name} --model_name_or_path {model_name_or_path} \
   --noise_type {noise_type} --config_idx {config_idx} --per_example_max_grad_norm {per_example_max_grad_norm}  \
-  --non_private {non_private} --config_idx {config_idx} --output_dir {output_dir} --overwrite_output_dir \
+  --non_private {non_private} --output_dir {output_dir} --overwrite_output_dir \
   --gradient_accumulation_steps {gradient_accumulation_steps} --num_train_epochs {num_train_epochs} \
   --learning_rate {learning_rate} --clipping_mode {clipping_mode} --few_shot_type {few_shot_type} --data_dir {data_dir} \
   --seed {seed} --randomly_initialize {randomly_initialize} --store_grads {store_grads} --template {template} \
@@ -107,8 +107,16 @@ def main(
     orthogonal_projection_path=None,
     orthogonal_projection_rank=100,
 ):
-    non_private="yes" if noise_type == "non" else "no"
-    if non_private:
+    if noise_type == "non":
+        non_private = "yes"
+    elif noise_type == "Gaussian" or noise_type == "PLRVO" or noise_type == "Laplace":
+        non_private = "no"
+    else:
+        print("reinput noise type. exit...")
+        exit(0)
+    
+    print(non_private)
+    if non_private == "yes":
         assert int(config_idx) == 0
     else:
         assert int(config_idx) > 0
@@ -142,7 +150,6 @@ def main(
         orthogonal_projection_path=orthogonal_projection_path,
         orthogonal_projection_rank=orthogonal_projection_rank,
         non_private=non_private,
-        config_idx=config_idx,
     )
     print('Running command:')
     print(command)
