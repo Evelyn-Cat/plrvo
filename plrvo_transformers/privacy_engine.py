@@ -101,15 +101,18 @@ class PrivacyEngine(object):
             eps_error: Error threshold for upper and lower bound in the GLW accounting procedure.
             skip_checks: Skips the model type validation test if True.
         """
-        assert noise_type == "PLRVO"
-        
         import json
         jsonfile = f"../plrvo/configs/{int(target_epsilon)}.json"
         with open(jsonfile, 'r') as f:
             config = json.load(f)
         self.config = config
 
-
+        if noise_type == "PLRVO":
+            self.config = config
+        elif noise_type == "Gaussian":
+            sigma = self.config["sigma"]
+            noise_multiplier = sigma / self.config["C"]
+        
         utils.handle_unused_kwargs(unused_kwargs)
         del unused_kwargs
         super(PrivacyEngine, self).__init__()

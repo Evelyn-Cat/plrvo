@@ -44,11 +44,11 @@ def evaluate(loader, model):
 
 
 def main(
-    per_device_train_batch_size=50,
+    per_device_train_batch_size=100,
     task_name="cifar10",
     model_name_or_path='vit',
     noise_type="Gaussian",
-    target_epsilon=0.3,
+    config_idx=0,
     per_example_max_grad_norm=3,
     output_dir="image_result",
     batch_size=1024,
@@ -65,9 +65,8 @@ def main(
     print("Current Device:", torch.cuda.current_device())
     print("Device Name:", torch.cuda.get_device_name(0) if torch.cuda.is_available() else "None")
     print(device)
-    exit(0)
 
-    config_idx=None if noise_type != "PLRVO" else int(target_epsilon)
+    config_idx = int(config_idx)
     train_batch_size = batch_size
     gradient_accumulation_steps = train_batch_size // per_device_train_batch_size
     if model_name_or_path=="vit":
@@ -84,19 +83,17 @@ def main(
     print(device)
     exit(0)
     
-    if noise_type == "PLRVO":
+    if noise_type == "PLRVO" or noise_type == "Gaussian":
         print("confirm imported PLRVO")
         from plrvo_transformers import PrivacyEngine 
         from private_transformers import freeze_isolated_params_for_vit
-        assert config_idx != None
-    elif noise_type == "Gaussian":
-        print("confirm imported Gaussian")
-        from private_transformers import PrivacyEngine, freeze_isolated_params_for_vit
+        assert config_idx > 0
     elif noise_type == "Laplace":
         print("confirm imported Laplace")
         from prv_accountant import PRVAccountant # https://github.com/microsoft/prv_accountant
         # https://github.com/google/differential-privacy/blob/main/python/dp_accounting/dp_accounting/pld/privacy_loss_distribution_basic_example.py
     else:
+        assert config_idx == 0
         print("confirm running non-private")
         assert noise_type == "non"
 
@@ -137,7 +134,6 @@ def main(
         sample_size=50000,
         epochs=epochs,
         max_grad_norm=per_example_max_grad_norm,
-        target_epsilon=target_epsilon,
         noise_type=noise_type,
         config_idx=config_idx,
     )

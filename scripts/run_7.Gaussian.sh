@@ -22,7 +22,7 @@ noise_type=Gaussian
 # noise_type=PLRVO
 
 #### 2 setting hyperparamters (applicable for each noise type)
-gpu_id=1
+gpu_id=2
 per_device_train_batch_size=170 # classification task: 170 on datasec; 340 on datasec2;
 # per_device_train_batch_size=200 # generation task: 200 [gpt2]
 per_example_max_grad_norm=3  # clipping threshold C
@@ -60,7 +60,7 @@ array_modelname=(roberta-base bert-base-uncased)
 # array_modelname=(distilgpt2) # distilgpt2, gpt2, gpt2-medium, gpt2-large
 # array_modelname=(vit)
 ## [fine-tuning] running nlp classification task
-# taskname=sst-2
+# taskname=sst2
 # taskname=qnli
 # taskname=mnli
 # taskname=qqp
@@ -74,11 +74,14 @@ array_modelname=(roberta-base bert-base-uncased)
 # taskname=svhn
 # taskname=cinic10 # cinic # https://github.com/BayesWatch/cinic-10#data-loading
 
-array_modelname=(sst-2 qnli)
-for taskname in "${array_modelname[@]}"; do
-    ### automatically choose the script to run
+
+#### 5 running the scripts
+array_taskname=(sst2 qnli)
+for taskname in "${array_taskname[@]}"; do
+
+    # ### automatically choose the script to run
     case $taskname in
-        "sst-2"|"qnli"|"mnli"|"qqp")
+        "sst2"|"qnli"|"mnli"|"qqp")
             task_type="classification"
             ;;
         "e2e"|"dart")
@@ -94,7 +97,6 @@ for taskname in "${array_modelname[@]}"; do
     echo "Curent Directory is $pwd_folder"
     output_dir=$pwd_folder/results/${task_type}/${taskname}
 
-    #### 5 running the scripts
     for modelname in "${array_modelname[@]}"; do
         if [ "$noise_type" == "PLRVO" ]; then
             target_epsilon=$config_idx
@@ -103,6 +105,6 @@ for taskname in "${array_modelname[@]}"; do
         # bash run_${task_type}.sh $gpu_id $per_device_train_batch_size $taskname $modelname $noise_type $target_epsilon $per_example_max_grad_norm $batch_size $output_dir
         bash running.sh $gpu_id $per_device_train_batch_size $taskname $modelname $noise_type $target_epsilon $per_example_max_grad_norm $batch_size $output_dir
         wait
+        
     done
-
 done

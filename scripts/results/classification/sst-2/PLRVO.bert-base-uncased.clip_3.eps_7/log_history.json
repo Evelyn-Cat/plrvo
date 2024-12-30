@@ -1,0 +1,80 @@
+[
+    {
+        "dev": {
+            "eval_loss": 0.6955804228782654,
+            "eval_acc": 0.5091743119266054
+        },
+        "loss": 0.0,
+        "learning_rate": 0.001,
+        "get_training_stats": {
+            "med_clip": null,
+            "max_clip": null,
+            "min_clip": null,
+            "snr": null,
+            "signal": null,
+            "noise": null,
+            "noise_limit": null
+        },
+        "privacy_spent": {
+            "eps_rdp": 0,
+            "alpha_rdp": 1.1,
+            "eps_low": null,
+            "eps_estimate": null,
+            "eps_upper": null
+        },
+        "epoch": 0,
+        "step": 0
+    },
+    {
+        "dev": {
+            "eval_loss": 0.6623706221580505,
+            "eval_acc": 0.8623853211009175
+        },
+        "loss": 0.16005389404296874,
+        "learning_rate": 0.001,
+        "get_training_stats": {
+            "med_clip": null,
+            "max_clip": null,
+            "min_clip": null,
+            "snr": 0.0013794925661266247,
+            "signal": 79.15202331542969,
+            "noise": 57377.63671875,
+            "noise_limit": 19099.90783604836
+        },
+        "privacy_spent": {
+            "eps_rdp": 5.928000049899449,
+            "alpha_rdp": 3.1,
+            "eps_low": 4.77386910310328,
+            "eps_estimate": 4.82432627602732,
+            "eps_upper": 4.8747846271904445
+        },
+        "epoch": 1.513853904282116,
+        "step": 100
+    },
+    {
+        "dev": {
+            "eval_loss": 0.691288948059082,
+            "eval_acc": 0.8623853211009175
+        },
+        "loss": 0.13462393188476562,
+        "learning_rate": 0.001,
+        "get_training_stats": {
+            "med_clip": null,
+            "max_clip": null,
+            "min_clip": null,
+            "snr": 0.0012902122314835214,
+            "signal": 74.02836608886719,
+            "noise": 57376.890625,
+            "noise_limit": 19099.90783604836
+        },
+        "privacy_spent": {
+            "eps_rdp": 6.980783603043001,
+            "alpha_rdp": 2.9,
+            "eps_low": 5.756660627868103,
+            "eps_estimate": 5.807163294961457,
+            "eps_upper": 5.8576668044021005
+        },
+        "epoch": 2.9974811083123427,
+        "step": 198
+    }
+]

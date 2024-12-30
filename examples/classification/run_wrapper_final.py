@@ -27,7 +27,7 @@ def _get_command(
     task_name,
     model_name_or_path,
     noise_type,
-    target_epsilon,
+    config_idx,
     per_example_max_grad_norm,
     output_dir,
     gradient_accumulation_steps,
@@ -49,8 +49,8 @@ def _get_command(
     orthogonal_projection_path,
     orthogonal_projection_rank,
     non_private,
-    config_idx,
 ):
+    if task_name == "sst2": task_name = "sst-2"
     data_dir = f"{data_dir}/{common.task_name2suffix_name[task_name]}"
     template = {
         "sst-2": "*cls**sent_0*_It_was*mask*.*sep+*",
@@ -63,7 +63,7 @@ def _get_command(
 CUDA_VISIBLE_DEVICES={gpu_id} python -m classification.run_classification_final \
   --per_device_train_batch_size {per_device_train_batch_size} \
   --task_name {task_name} --model_name_or_path {model_name_or_path} \
-  --noise_type {noise_type} --target_epsilon {target_epsilon} --per_example_max_grad_norm {per_example_max_grad_norm}  \
+  --noise_type {noise_type} --config_idx {config_idx} --per_example_max_grad_norm {per_example_max_grad_norm}  \
   --non_private {non_private} --config_idx {config_idx} --output_dir {output_dir} --overwrite_output_dir \
   --gradient_accumulation_steps {gradient_accumulation_steps} --num_train_epochs {num_train_epochs} \
   --learning_rate {learning_rate} --clipping_mode {clipping_mode} --few_shot_type {few_shot_type} --data_dir {data_dir} \
@@ -82,10 +82,10 @@ CUDA_VISIBLE_DEVICES={gpu_id} python -m classification.run_classification_final 
 def main(
     gpu_id=0,
     per_device_train_batch_size=170,
-    task_name="sst-2",
+    task_name="sst2",
     model_name_or_path="roberta-base",
     noise_type="Gaussian",
-    target_epsilon=8,
+    config_idx=0,
     per_example_max_grad_norm=3,
     output_dir="results",
     gradient_accumulation_steps=6,
@@ -108,7 +108,11 @@ def main(
     orthogonal_projection_rank=100,
 ):
     non_private="yes" if noise_type == "non" else "no"
-    config_idx=int(target_epsilon) if noise_type=="PLRVO" else 0
+    if non_private:
+        assert int(config_idx) == 0
+    else:
+        assert int(config_idx) > 0
+        assert os.path.exists(f"../plrvo/configs/{config_idx}.json")
     
     command = _get_command(
         gpu_id=gpu_id,
@@ -116,7 +120,7 @@ def main(
         task_name=task_name,
         model_name_or_path=model_name_or_path,
         noise_type=noise_type,
-        target_epsilon=target_epsilon,
+        config_idx=config_idx,
         per_example_max_grad_norm=per_example_max_grad_norm,
         output_dir=output_dir,
         gradient_accumulation_steps=gradient_accumulation_steps,

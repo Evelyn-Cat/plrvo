@@ -10,6 +10,7 @@ plrvo_search/*
 private_transformers2/*
 results/*
 scripts/results/*
+!results/classification/qnli/Gaussian.bert-base-uncased.clip_3.eps_7/final_results.json
 record.txt
 todo
 running*sh

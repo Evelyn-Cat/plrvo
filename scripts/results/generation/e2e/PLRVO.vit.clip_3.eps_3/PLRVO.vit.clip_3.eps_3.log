@@ -1,0 +1,12 @@
+[2024-12-29 03:48:36,071] [INFO] [real_accelerator.py:133:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+running stars at 2024-12-29 03:48:37.938304
+confirm imported PLRVO
+PLRVO
+3
+CUDA Available: True
+CUDA Device Count: 1
+Current Device: 0
+Device Name: NVIDIA RTX A6000
+Running command:
+
+CUDA_VISIBLE_DEVICES=0 python -m table2text.run_language_modeling   --per_device_train_batch_size 200 --tokenizer_name vit   --task_mode e2e --model_name_or_path vit   --noise_type PLRVO --target_epsilon 3 --per_example_max_grad_norm 3    --non_private no --config_idx 3 --output_dir /mnt/backup/home/qiy22005/PRO/plrvo/scripts/results/generation/e2e/PLRVO.vit.clip_3.eps_3 --overwrite_output_dir   --gradient_accumulation_steps 5 --num_train_epochs 10   --learning_rate 0.002 --clipping_mode ghost --data_folder table2text/prefix-tuning/data/e2e_data   --seed 42 --eval_steps 100 --lr_decay "no" --max_seq_len 100 --do_train --do_eval   --per_device_eval_batch_size 100 --evaluation_strategy epoch --evaluate_before_training True --evaluate_during_training "yes"   --line_by_line --save_steps 100 --save_total_limit 1 --save_at_last no   --logging_dir /mnt/backup/home/qiy22005/PRO/plrvo/scripts/results/generation/e2e/PLRVO.vit.clip_3.eps_3 --logging_steps -1 --eval_epochs 2 --max_eval_batches 100   --max_generations 9223372036854775807 --max_generations_train 10 --max_generations_valid 9223372036854775807   --max_train_examples 9223372036854775807 --max_valid_examples 9223372036854775807 --max_eval_examples 9223372036854775807   --format_mode cat --cache_dir ../cache

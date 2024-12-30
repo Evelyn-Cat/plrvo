@@ -195,7 +195,7 @@ class PrivacyArguments:
         }
     )
     target_epsilon: float = field(
-        default=None, metadata={
+        default=0, metadata={
             "help": "Privacy budget; if `None` use the noise multiplier specified."
         }
     )

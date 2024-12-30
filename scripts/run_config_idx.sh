@@ -10,7 +10,7 @@
 ## per_device_train_batch_size
 ## per_example_max_grad_norm
 ## batch_size
-# target_epsilon | config_idx
+# config_idx
 ## array_modelname
 ## taskname
 # output folder name (if needed): $output_dir
@@ -30,18 +30,13 @@ batch_size=1024
 
 #### 3 setting privacy parameters
 case $noise_type in
-    "Gaussian"|"Laplace")
-        # use target_epsilon for only Gaussian and Laplace noises
-        target_epsilon=0.362749854323983  # Example value, you can change this value as needed
-        echo "Setting privacy for $noise_type noise where target_epsilon: $target_epsilon"
-        ;;
-    "PLRVO")
-        # use config_idx for only PLRVO noise to choose .json file from ./plrvo/config/${idx}.json
+    "Gaussian"|"Laplace"|"PLRVO")
+        # use config_idx to choose .json file from ./plrvo/config/${idx}.json
         config_idx=3  # Example index, you can change this value as needed
-        echo "Setting privacy for PLRVO noise where config idx: $config_idx"
+        echo "Setting privacy for $noise_type noise where config idx: $config_idx"
         ;;
     "non")
-        target_epsilon=0
+        config_idx=0
         per_example_max_grad_norm=0
         echo "Runing non-private Mode."
         ;;
@@ -95,13 +90,8 @@ output_dir=$pwd_folder/results/${task_type}/${taskname}
 
 #### 5 running the scripts
 for modelname in "${array_modelname[@]}"; do
-    if [ "$noise_type" == "PLRVO" ]; then
-        target_epsilon=$config_idx
-    fi
-    
-    # bash run_${task_type}.sh $gpu_id $per_device_train_batch_size $taskname $modelname $noise_type $target_epsilon $per_example_max_grad_norm $batch_size $output_dir
-    bash running.sh $gpu_id $per_device_train_batch_size $taskname $modelname $noise_type $target_epsilon $per_example_max_grad_norm $batch_size $output_dir
+    # bash run_${task_type}.sh $gpu_id $per_device_train_batch_size $taskname $modelname $noise_type $config_idx $per_example_max_grad_norm $batch_size $output_dir
+    bash running_config_idx.sh $gpu_id $per_device_train_batch_size $taskname $modelname $noise_type $config_idx $per_example_max_grad_norm $batch_size $output_dir
     wait
-    exit 0
 done
 

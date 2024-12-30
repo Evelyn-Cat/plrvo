@@ -11,7 +11,7 @@ def _get_command(
     task_name,
     model_name_or_path,
     noise_type,
-    target_epsilon,
+    config_idx,
     per_example_max_grad_norm,
     output_dir,
     gradient_accumulation_steps,
@@ -22,7 +22,6 @@ def _get_command(
     num_train_epochs,
     seed,
     non_private,
-    config_idx,
 ):
     if task_name == "e2e":
         learning_rate = 2e-3 if task_name=="e2e" else 5e-4
@@ -42,7 +41,7 @@ def _get_command(
 CUDA_VISIBLE_DEVICES={gpu_id} python -m table2text.run_language_modeling \
   --per_device_train_batch_size {per_device_train_batch_size} --tokenizer_name {model_name_or_path} \
   --task_mode {task_name} --model_name_or_path {model_name_or_path} \
-  --noise_type {noise_type} --target_epsilon {target_epsilon} --per_example_max_grad_norm {per_example_max_grad_norm}  \
+  --noise_type {noise_type} --config_idx {config_idx} --per_example_max_grad_norm {per_example_max_grad_norm}  \
   --non_private {non_private} --config_idx {config_idx} --output_dir {output_dir} --overwrite_output_dir \
   --gradient_accumulation_steps {gradient_accumulation_steps} --num_train_epochs {num_train_epochs} \
   --learning_rate {learning_rate} --clipping_mode {clipping_mode} --data_folder {data_dir} \
@@ -62,7 +61,7 @@ def main(
     task_name="e2e",
     model_name_or_path="gpt2", # distilgpt2, gpt2, gpt2-medium, gpt2-large
     noise_type="Gaussian",
-    target_epsilon=8,
+    config_idx=0,
     per_example_max_grad_norm=3,
     output_dir="results",
     gradient_accumulation_steps=64,
@@ -74,7 +73,11 @@ def main(
     seed=42,
 ):
     non_private="yes" if noise_type == "non" else "no"
-    config_idx=int(target_epsilon) if noise_type=="PLRVO" else 0
+    if non_private:
+        assert int(config_idx) == 0
+    else:
+        assert int(config_idx) > 0
+        assert os.path.exists(f"../plrvo/configs/{config_idx}.json")
     
     command = _get_command(
         gpu_id=gpu_id,
@@ -82,7 +85,7 @@ def main(
         task_name=task_name,
         model_name_or_path=model_name_or_path,
         noise_type=noise_type,
-        target_epsilon=target_epsilon,
+        config_idx=config_idx,
         per_example_max_grad_norm=per_example_max_grad_norm,
         output_dir=output_dir,
         gradient_accumulation_steps=gradient_accumulation_steps,

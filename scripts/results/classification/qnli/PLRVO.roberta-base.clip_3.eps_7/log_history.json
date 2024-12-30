@@ -1,0 +1,132 @@
+[
+    {
+        "dev": {
+            "eval_loss": 0.694766104221344,
+            "eval_acc": 0.5053999633900788
+        },
+        "loss": 0.0,
+        "learning_rate": 0.001,
+        "get_training_stats": {
+            "med_clip": null,
+            "max_clip": null,
+            "min_clip": null,
+            "snr": null,
+            "signal": null,
+            "noise": null,
+            "noise_limit": null
+        },
+        "privacy_spent": {
+            "eps_rdp": 0,
+            "alpha_rdp": 1.1,
+            "eps_low": null,
+            "eps_estimate": null,
+            "eps_upper": null
+        },
+        "epoch": 0,
+        "step": 0
+    },
+    {
+        "dev": {
+            "eval_loss": 1.0640969276428223,
+            "eval_acc": 0.7904082006223687
+        },
+        "loss": 0.19758805847167968,
+        "learning_rate": 0.001,
+        "get_training_stats": {
+            "med_clip": null,
+            "max_clip": null,
+            "min_clip": null,
+            "snr": 0.001079911596812074,
+            "signal": 66.10372161865234,
+            "noise": 61212.16015625,
+            "noise_limit": 19454.282366358624
+        },
+        "privacy_spent": {
+            "eps_rdp": 5.5523675690735255,
+            "alpha_rdp": 3.2,
+            "eps_low": 4.410876802777528,
+            "eps_estimate": 4.461311946195596,
+            "eps_upper": 4.511746900346226
+        },
+        "epoch": 0.9724473257698542,
+        "step": 100
+    },
+    {
+        "dev": {
+            "eval_loss": 1.0394032001495361,
+            "eval_acc": 0.7993776313380926
+        },
+        "loss": 0.22648942565917968,
+        "learning_rate": 0.001,
+        "get_training_stats": {
+            "med_clip": null,
+            "max_clip": null,
+            "min_clip": null,
+            "snr": 0.0019737070279727174,
+            "signal": 120.83189392089844,
+            "noise": 61220.78515625,
+            "noise_limit": 19454.282366358624
+        },
+        "privacy_spent": {
+            "eps_rdp": 6.337250944905524,
+            "alpha_rdp": 3.1,
+            "eps_low": 5.134678732635617,
+            "eps_estimate": 5.185146839812699,
+            "eps_upper": 5.235616136604022
+        },
+        "epoch": 1.9529983792544572,
+        "step": 200
+    },
+    {
+        "dev": {
+            "eval_loss": 1.0927835702896118,
+            "eval_acc": 0.7889438037708218
+        },
+        "loss": 0.23527279663085937,
+        "learning_rate": 0.001,
+        "get_training_stats": {
+            "med_clip": null,
+            "max_clip": null,
+            "min_clip": null,
+            "snr": 0.0026413232146429762,
+            "signal": 161.67544555664062,
+            "noise": 61210.01953125,
+            "noise_limit": 19454.282366358624
+        },
+        "privacy_spent": {
+            "eps_rdp": 6.945247857260626,
+            "alpha_rdp": 3.0,
+            "eps_low": 5.704558253292549,
+            "eps_estimate": 5.755052679406725,
+            "eps_upper": 5.805547154405973
+        },
+        "epoch": 2.93354943273906,
+        "step": 300
+    },
+    {
+        "dev": {
+            "eval_loss": 1.0669525861740112,
+            "eval_acc": 0.7880285557386052
+        },
+        "loss": 0.0159793701171875,
+        "learning_rate": 0.001,
+        "get_training_stats": {
+            "med_clip": null,
+            "max_clip": null,
+            "min_clip": null,
+            "snr": 0.001917899422985639,
+            "signal": 117.40921020507812,
+            "noise": 61217.60546875,
+            "noise_limit": 19454.282366358624
+        },
+        "privacy_spent": {
+            "eps_rdp": 6.9807241175513255,
+            "alpha_rdp": 3.0,
+            "eps_low": 5.735794844958983,
+            "eps_estimate": 5.786290516242474,
+            "eps_upper": 5.836786445373409
+        },
+        "epoch": 2.9918962722852513,
+        "step": 306
+    }
+]
