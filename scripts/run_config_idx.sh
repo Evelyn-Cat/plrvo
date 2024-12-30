@@ -70,18 +70,18 @@ taskname=sst2
 # taskname=cinic10 # cinic # https://github.com/BayesWatch/cinic-10#data-loading
 
 
-# ### automatically choose the script to run
-# case $taskname in
-#     "sst2"|"qnli"|"mnli"|"qqp")
-#         task_type="classification"
-#         ;;
-#     "e2e"|"dart")
-#         task_type="generation"
-#         ;;
-#     *)
-#         task_type="cv"
-#         ;;
-# esac
+### automatically choose the script to run
+case $taskname in
+    "sst2"|"qnli"|"mnli"|"qqp")
+        task_type="classification"
+        ;;
+    "e2e"|"dart")
+        task_type="generation"
+        ;;
+    *)
+        task_type="cv"
+        ;;
+esac
 
 ### automatically set the output directory
 pwd_folder=`pwd`

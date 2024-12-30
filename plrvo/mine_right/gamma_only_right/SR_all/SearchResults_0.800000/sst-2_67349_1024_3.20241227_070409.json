@@ -1,0 +1,11 @@
+{
+    "C": 0.8,
+    "array_alpha": 256,
+    "sample_size": 67349,
+    "target_delta": 0.0000074240152043831385,
+    "batch_size": 1024,
+    "sample_rate": 0.015204383138576668,
+    "epoch": 3,
+    "steps": 198,
+    "dataset": "sst-2"
+}

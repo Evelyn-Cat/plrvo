@@ -81,7 +81,7 @@ taskname=$taskname
 
 ### automatically choose the script to run
 case $taskname in
-    "sst2"|"qnli"|"mnli"|"qqp")
+    "sst2"|"qnli"|"mnli"|"qqp"|"sst-2")
         task_type="classification"
         ;;
     "e2e"|"dart")

@@ -1,0 +1,11 @@
+{
+    "C": 0.4,
+    "array_alpha": 256,
+    "sample_size": 93187,
+    "target_delta": 0.000005365555281316063,
+    "batch_size": 1024,
+    "sample_rate": 0.010988657216135298,
+    "epoch": 10,
+    "steps": 911,
+    "dataset": "dart"
+}

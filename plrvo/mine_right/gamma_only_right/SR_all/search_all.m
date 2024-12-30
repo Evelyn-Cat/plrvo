@@ -1,0 +1,10 @@
+func_search(0.1);
+func_search(0.2);
+func_search(0.3);
+func_search(0.4);
+func_search(0.5);
+func_search(0.6);
+func_search(0.7);
+func_search(0.8);
+func_search(0.9);
+func_search(1);

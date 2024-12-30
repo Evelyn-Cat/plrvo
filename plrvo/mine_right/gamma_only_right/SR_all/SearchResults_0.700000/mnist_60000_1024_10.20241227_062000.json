@@ -1,0 +1,11 @@
+{
+    "C": 0.7,
+    "array_alpha": 256,
+    "sample_size": 60000,
+    "target_delta": 0.000008333333333333334,
+    "batch_size": 1024,
+    "sample_rate": 0.017066666666666667,
+    "epoch": 10,
+    "steps": 586,
+    "dataset": "mnist"
+}
