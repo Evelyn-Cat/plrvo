@@ -49,7 +49,6 @@ def main(
     model_name_or_path='vit',
     noise_type="Gaussian",
     config_idx=0,
-    per_example_max_grad_norm=3,
     output_dir="image_result",
     batch_size=1024,
     test_batch_size=500,
@@ -133,7 +132,6 @@ def main(
         batch_size=train_batch_size,
         sample_size=50000,
         epochs=epochs,
-        max_grad_norm=per_example_max_grad_norm,
         noise_type=noise_type,
         config_idx=config_idx,
     )

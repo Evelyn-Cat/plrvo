@@ -230,6 +230,9 @@ class Trainer(transformers.Trainer):
             t_total_from_num_train_epochs = (
                 int(len(train_dataloader) // self.args.gradient_accumulation_steps * self.args.num_train_epochs)
             )
+            print(f"1: {num_update_steps_per_epoch} ")
+            print(f"1: {t_total}")
+            print(f"1: {len(train_dataloader)} {self.args.gradient_accumulation_steps} {self.args.num_train_epochs}")
             assert t_total <= t_total_from_num_train_epochs, (
                 "`num_train_epochs` give strict control (since it also controls the noise multiplier), "
                 "`max_steps` should yield fewer steps"
@@ -237,6 +240,9 @@ class Trainer(transformers.Trainer):
         else:
             t_total = int(len(train_dataloader) // self.args.gradient_accumulation_steps * self.args.num_train_epochs)
             num_train_epochs = self.args.num_train_epochs
+            print(f"2: {self.args.max_steps}")
+            print(f"2: {len(train_dataloader)} {self.args.gradient_accumulation_steps} {self.args.num_train_epochs}")
+        
         return dict(
             train_dataloader=train_dataloader,
             t_total=t_total,

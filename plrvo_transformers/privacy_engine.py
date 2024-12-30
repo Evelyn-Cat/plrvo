@@ -25,6 +25,9 @@ import logging
 import math
 import types
 from typing import Callable, Dict, Optional, Sequence, Union
+import os, json
+import numpy as np
+                    
 
 import torch
 from ml_swissknife import utils
@@ -101,19 +104,24 @@ class PrivacyEngine(object):
             eps_error: Error threshold for upper and lower bound in the GLW accounting procedure.
             skip_checks: Skips the model type validation test if True.
         """
-        import os, json
         current_file_path = os.path.abspath(__file__)
         current_dir = os.path.dirname(current_file_path) 
         jsonfile = os.path.join(current_dir, "..", "plrvo", "configs", f"{int(config_idx)}.json")
         with open(jsonfile, 'r') as f:
             config = json.load(f)
         self.config = config
+        self.max_grad_norm = self.config["C"]
+        self.noise_type = noise_type
 
         if noise_type == "PLRVO":
             self.config = config
+            self.sigma = 0
+            self.noise_multiplier = 0
         elif noise_type == "Gaussian":
-            sigma = self.config["sigma"]
-            noise_multiplier = sigma / self.config["C"]
+            self.sigma = self.config["sigma"]
+            self.noise_multiplier = self.sigma / self.config["C"]
+        
+        print(f"per_example_max_grad_norm is {self.max_grad_norm} [self.max_grad_norm]")
         
         utils.handle_unused_kwargs(unused_kwargs)
         del unused_kwargs
@@ -130,7 +138,7 @@ class PrivacyEngine(object):
         sample_rate = batch_size / sample_size
         if target_delta is None:
             target_delta = 1/(2*sample_size)
-        if noise_multiplier is None:
+        if self.noise_multiplier is None:
             if target_epsilon is None or epochs is None:
                 raise ValueError(
                     f"`target_epsilon` and `epochs` must be specified when `noise_multiplier` is `None`."
@@ -149,8 +157,8 @@ class PrivacyEngine(object):
         self.max_grad_norm = max_grad_norm
 
         self.epochs = epochs
-        self.noise_multiplier = noise_multiplier
-        self.effective_noise_multiplier = noise_multiplier / batch_size
+        # self.noise_multiplier = noise_multiplier
+        if self.noise_type=="Gaussian": self.effective_noise_multiplier = self.noise_multiplier / batch_size
         self.target_epsilon = target_epsilon
         self.target_delta = target_delta
         self.alphas = alphas
@@ -336,17 +344,24 @@ class PrivacyEngine(object):
             if self.record_snr:
                 signals.append(param.grad.reshape(-1).norm(2))
 
-            if self.max_grad_norm > 0:
-                import numpy as np
-                
-                us = np.random.gamma(self.config['G_k'], self.config["G_theta"], param.size())
-                noise = np.random.laplace(0, 1/us)
-                
-                noise = torch.tensor(
-                    noise.reshape(param.size()),
-                    device=param.device,
-                    dtype=param.dtype,
-                )
+            if self.noise_multiplier > 0 and self.max_grad_norm > 0:
+                if self.noise_type == "Gaussian":
+                    noise = torch.normal(
+                        mean=0,
+                        std=self.noise_multiplier * self.max_grad_norm,
+                        size=param.size(),
+                        device=param.device,
+                        dtype=param.dtype,
+                    )
+                elif self.noise_type == "PLRVO":
+                    us = np.random.gamma(self.config['G_k'], self.config["G_theta"], param.size())
+                    noise = np.random.laplace(0, 1/us)
+                    
+                    noise = torch.tensor(
+                        noise.reshape(param.size()),
+                        device=param.device,
+                        dtype=param.dtype,
+                    )
                 
                 param.grad += noise
                 if self.record_snr:
@@ -357,7 +372,7 @@ class PrivacyEngine(object):
 
         if self.record_snr and len(noises) > 0:
             self.signal, self.noise = tuple(torch.stack(lst).norm(2).item() for lst in (signals, noises))
-            self.noise_limit = math.sqrt(self.num_params) * self.noise_multiplier * self.max_grad_norm
+            if self.noise_type=="Gaussian": self.noise_limit = math.sqrt(self.num_params) * self.noise_multiplier * self.max_grad_norm
             self.snr = self.signal / self.noise
         else:
             self.snr = math.inf  # Undefined!
@@ -545,14 +560,15 @@ class PrivacyEngine(object):
         if accounting_mode in (AccountingMode.all_, AccountingMode.rdp):
             try:
                 manager = accounting_manager.RDPManager(alphas=self.alphas)
-                privacy_results.update(
-                    manager.compute_epsilon(
-                        sigma=self.noise_multiplier,
-                        sample_rate=self.sample_rate,
-                        target_delta=self.target_delta,
-                        steps=steps,
+                if self.noise_type == "Gaussian":
+                    privacy_results.update(
+                        manager.compute_epsilon(
+                            sigma=self.noise_multiplier,
+                            sample_rate=self.sample_rate,
+                            target_delta=self.target_delta,
+                            steps=steps,
+                        )
                     )
-                )
             except Exception as err:
                 logging.fatal("RDP accounting failed! Double check privacy parameters.")
                 if not lenient:
@@ -561,14 +577,15 @@ class PrivacyEngine(object):
         if accounting_mode in (AccountingMode.all_, AccountingMode.glw):
             try:
                 manager = accounting_manager.GLWManager(eps_error=self.eps_error)
-                privacy_results.update(
-                    manager.compute_epsilon(
-                        sigma=self.noise_multiplier,
-                        sample_rate=self.sample_rate,
-                        target_delta=self.target_delta,
-                        steps=steps
+                if self.noise_type == "Gaussian":
+                    privacy_results.update(
+                        manager.compute_epsilon(
+                            sigma=self.noise_multiplier,
+                            sample_rate=self.sample_rate,
+                            target_delta=self.target_delta,
+                            steps=steps
+                        )
                     )
-                )
             except Exception as err:
                 logging.fatal(
                     "Numerical composition of tradeoff functions failed! Double check privacy parameters."

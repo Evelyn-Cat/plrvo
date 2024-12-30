@@ -28,7 +28,6 @@ def _get_command(
     model_name_or_path,
     noise_type,
     config_idx,
-    per_example_max_grad_norm,
     output_dir,
     gradient_accumulation_steps,
     learning_rate,
@@ -63,7 +62,7 @@ def _get_command(
 CUDA_VISIBLE_DEVICES={gpu_id} python -m classification.run_classification_final \
   --per_device_train_batch_size {per_device_train_batch_size} \
   --task_name {task_name} --model_name_or_path {model_name_or_path} \
-  --noise_type {noise_type} --config_idx {config_idx} --per_example_max_grad_norm {per_example_max_grad_norm}  \
+  --noise_type {noise_type} --config_idx {config_idx} \
   --non_private {non_private} --output_dir {output_dir} --overwrite_output_dir \
   --gradient_accumulation_steps {gradient_accumulation_steps} --num_train_epochs {num_train_epochs} \
   --learning_rate {learning_rate} --clipping_mode {clipping_mode} --few_shot_type {few_shot_type} --data_dir {data_dir} \
@@ -86,7 +85,6 @@ def main(
     model_name_or_path="roberta-base",
     noise_type="Gaussian",
     config_idx=0,
-    per_example_max_grad_norm=3,
     output_dir="results",
     gradient_accumulation_steps=6,
     learning_rate=1e-3,
@@ -129,7 +127,6 @@ def main(
         model_name_or_path=model_name_or_path,
         noise_type=noise_type,
         config_idx=config_idx,
-        per_example_max_grad_norm=per_example_max_grad_norm,
         output_dir=output_dir,
         gradient_accumulation_steps=gradient_accumulation_steps,
         learning_rate=learning_rate,
@@ -157,5 +154,4 @@ def main(
 
 
 if __name__ == "__main__":
-    # gradient_accumulation_steps = batch_size // per_device_train_batch_size
     fire.Fire(main)

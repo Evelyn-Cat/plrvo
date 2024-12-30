@@ -12,7 +12,6 @@ def _get_command(
     model_name_or_path,
     noise_type,
     config_idx,
-    per_example_max_grad_norm,
     output_dir,
     gradient_accumulation_steps,
     clipping_mode,
@@ -41,7 +40,7 @@ def _get_command(
 CUDA_VISIBLE_DEVICES={gpu_id} python -m table2text.run_language_modeling \
   --per_device_train_batch_size {per_device_train_batch_size} --tokenizer_name {model_name_or_path} \
   --task_mode {task_name} --model_name_or_path {model_name_or_path} \
-  --noise_type {noise_type} --config_idx {config_idx} --per_example_max_grad_norm {per_example_max_grad_norm}  \
+  --noise_type {noise_type} --config_idx {config_idx} \
   --non_private {non_private} --output_dir {output_dir} --overwrite_output_dir \
   --gradient_accumulation_steps {gradient_accumulation_steps} --num_train_epochs {num_train_epochs} \
   --learning_rate {learning_rate} --clipping_mode {clipping_mode} --data_folder {data_dir} \
@@ -62,7 +61,6 @@ def main(
     model_name_or_path="gpt2", # distilgpt2, gpt2, gpt2-medium, gpt2-large
     noise_type="Gaussian",
     config_idx=0,
-    per_example_max_grad_norm=3,
     output_dir="results",
     gradient_accumulation_steps=64,
     learning_rate=None,
@@ -87,7 +85,6 @@ def main(
         model_name_or_path=model_name_or_path,
         noise_type=noise_type,
         config_idx=config_idx,
-        per_example_max_grad_norm=per_example_max_grad_norm,
         output_dir=output_dir,
         gradient_accumulation_steps=gradient_accumulation_steps,
         clipping_mode=clipping_mode,
