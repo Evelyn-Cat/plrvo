@@ -4,12 +4,16 @@ plrvo_check/*
 plrvo_search/*
 private_transformers2/*
 results/*
-scripts/results*
 tests/*
 running*sh
 todo
 record.txt
 
+
+scripts/results*
+**model.safetensors
+**/*.pt
+**pytorch_model.bin
 *__pycache__*
 
 *cache*
