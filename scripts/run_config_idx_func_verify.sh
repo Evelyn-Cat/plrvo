@@ -100,7 +100,7 @@ output_dir=$pwd_folder/results/${task_type}/${taskname}
 #### 5 running the scripts
 for modelname in "${array_modelname[@]}"; do
     # bash run_${task_type}.sh $gpu_id $per_device_train_batch_size $taskname $modelname $noise_type $config_idx $batch_size $output_dir
-    bash running_config_idx.sh $gpu_id $per_device_train_batch_size $taskname $modelname $noise_type $config_idx $batch_size $output_dir
+    bash running_config_idx_verify.sh $gpu_id $per_device_train_batch_size $taskname $modelname $noise_type $config_idx $batch_size $output_dir
     wait
 done
 
