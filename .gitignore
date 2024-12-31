@@ -13,6 +13,7 @@ record.txt
 scripts/results*
 **model.safetensors
 **/*.pt
+**/*model_args.bin
 **pytorch_model.bin
 *__pycache__*
 
