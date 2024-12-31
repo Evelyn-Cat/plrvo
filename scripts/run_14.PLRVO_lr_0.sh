@@ -12,8 +12,10 @@ config_idx=14
 
 noise_type=PLRVO
 gpu_id=0
-taskname=sst2
 per_device_train_batch_size=170
-lr=5e-4
+lr=5e-5
 
-bash run_config_idx_func_lr.sh $noise_type $gpu_id $config_idx $taskname $per_device_train_batch_size $lr
+for taskname in qnli mnli qqp
+do
+    bash run_config_idx_func_lr.sh $noise_type $gpu_id $config_idx $taskname $per_device_train_batch_size $lr
+done

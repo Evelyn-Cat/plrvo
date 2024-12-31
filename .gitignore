@@ -1,9 +1,6 @@
 cache/*
 old
-plrvo
-plrvo/20241230/*
-plrvo/cache/*
-plrvo/mine_not_right/*
+plrvo_check/*
 plrvo_search/*
 private_transformers2/*
 results/*
