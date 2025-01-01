@@ -1,6 +1,9 @@
 cache/*
 old
-plrvo_check/*
+plrvo_check/lmo_params/*
+plrvo_check/mine_not_right/*
+plrvo_check/record*
+plrvo_check/plrvo.py
 plrvo_search/*
 private_transformers2/*
 results/*

@@ -1,0 +1,263 @@
+[2024-12-31 18:35:22,245] [INFO] [real_accelerator.py:133:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+running stars at 2024-12-31 18:35:22.970274
+confirm imported Gaussian
+ | tokenizer: RobertaTokenizer(name_or_path='roberta-base', vocab_size=50265, model_max_length=512, is_fast=False, padding_side='right', truncation_side='right', special_tokens={'bos_token': AddedToken("<s>", rstrip=False, lstrip=False, single_word=False, normalized=True), 'eos_token': AddedToken("</s>", rstrip=False, lstrip=False, single_word=False, normalized=True), 'unk_token': AddedToken("<unk>", rstrip=False, lstrip=False, single_word=False, normalized=True), 'sep_token': AddedToken("</s>", rstrip=False, lstrip=False, single_word=False, normalized=True), 'pad_token': AddedToken("<pad>", rstrip=False, lstrip=False, single_word=False, normalized=True), 'cls_token': AddedToken("<s>", rstrip=False, lstrip=False, single_word=False, normalized=True), 'mask_token': AddedToken("<mask>", rstrip=False, lstrip=True, single_word=False, normalized=True)}, clean_up_tokenization_spaces=True), size: 50265 
+
+
+
+ *** dataset sizes: 
+train: 67349
+valid: 872
+ ***
+ | model type: 
+<class 'transformers.models.roberta.modeling_roberta.RobertaForSequenceClassification'>
+attention_only: False | randomly_initialize: False
+Params to update: 
+[
+    "roberta.embeddings.word_embeddings.weight",
+    "roberta.embeddings.position_embeddings.weight",
+    "roberta.embeddings.token_type_embeddings.weight",
+    "roberta.embeddings.LayerNorm.weight",
+    "roberta.embeddings.LayerNorm.bias",
+    "roberta.encoder.layer.0.attention.self.query.weight",
+    "roberta.encoder.layer.0.attention.self.query.bias",
+    "roberta.encoder.layer.0.attention.self.key.weight",
+    "roberta.encoder.layer.0.attention.self.key.bias",
+    "roberta.encoder.layer.0.attention.self.value.weight",
+    "roberta.encoder.layer.0.attention.self.value.bias",
+    "roberta.encoder.layer.0.attention.output.dense.weight",
+    "roberta.encoder.layer.0.attention.output.dense.bias",
+    "roberta.encoder.layer.0.attention.output.LayerNorm.weight",
+    "roberta.encoder.layer.0.attention.output.LayerNorm.bias",
+    "roberta.encoder.layer.0.intermediate.dense.weight",
+    "roberta.encoder.layer.0.intermediate.dense.bias",
+    "roberta.encoder.layer.0.output.dense.weight",
+    "roberta.encoder.layer.0.output.dense.bias",
+    "roberta.encoder.layer.0.output.LayerNorm.weight",
+    "roberta.encoder.layer.0.output.LayerNorm.bias",
+    "roberta.encoder.layer.1.attention.self.query.weight",
+    "roberta.encoder.layer.1.attention.self.query.bias",
+    "roberta.encoder.layer.1.attention.self.key.weight",
+    "roberta.encoder.layer.1.attention.self.key.bias",
+    "roberta.encoder.layer.1.attention.self.value.weight",
+    "roberta.encoder.layer.1.attention.self.value.bias",
+    "roberta.encoder.layer.1.attention.output.dense.weight",
+    "roberta.encoder.layer.1.attention.output.dense.bias",
+    "roberta.encoder.layer.1.attention.output.LayerNorm.weight",
+    "roberta.encoder.layer.1.attention.output.LayerNorm.bias",
+    "roberta.encoder.layer.1.intermediate.dense.weight",
+    "roberta.encoder.layer.1.intermediate.dense.bias",
+    "roberta.encoder.layer.1.output.dense.weight",
+    "roberta.encoder.layer.1.output.dense.bias",
+    "roberta.encoder.layer.1.output.LayerNorm.weight",
+    "roberta.encoder.layer.1.output.LayerNorm.bias",
+    "roberta.encoder.layer.2.attention.self.query.weight",
+    "roberta.encoder.layer.2.attention.self.query.bias",
+    "roberta.encoder.layer.2.attention.self.key.weight",
+    "roberta.encoder.layer.2.attention.self.key.bias",
+    "roberta.encoder.layer.2.attention.self.value.weight",
+    "roberta.encoder.layer.2.attention.self.value.bias",
+    "roberta.encoder.layer.2.attention.output.dense.weight",
+    "roberta.encoder.layer.2.attention.output.dense.bias",
+    "roberta.encoder.layer.2.attention.output.LayerNorm.weight",
+    "roberta.encoder.layer.2.attention.output.LayerNorm.bias",
+    "roberta.encoder.layer.2.intermediate.dense.weight",
+    "roberta.encoder.layer.2.intermediate.dense.bias",
+    "roberta.encoder.layer.2.output.dense.weight",
+    "roberta.encoder.layer.2.output.dense.bias",
+    "roberta.encoder.layer.2.output.LayerNorm.weight",
+    "roberta.encoder.layer.2.output.LayerNorm.bias",
+    "roberta.encoder.layer.3.attention.self.query.weight",
+    "roberta.encoder.layer.3.attention.self.query.bias",
+    "roberta.encoder.layer.3.attention.self.key.weight",
+    "roberta.encoder.layer.3.attention.self.key.bias",
+    "roberta.encoder.layer.3.attention.self.value.weight",
+    "roberta.encoder.layer.3.attention.self.value.bias",
+    "roberta.encoder.layer.3.attention.output.dense.weight",
+    "roberta.encoder.layer.3.attention.output.dense.bias",
+    "roberta.encoder.layer.3.attention.output.LayerNorm.weight",
+    "roberta.encoder.layer.3.attention.output.LayerNorm.bias",
+    "roberta.encoder.layer.3.intermediate.dense.weight",
+    "roberta.encoder.layer.3.intermediate.dense.bias",
+    "roberta.encoder.layer.3.output.dense.weight",
+    "roberta.encoder.layer.3.output.dense.bias",
+    "roberta.encoder.layer.3.output.LayerNorm.weight",
+    "roberta.encoder.layer.3.output.LayerNorm.bias",
+    "roberta.encoder.layer.4.attention.self.query.weight",
+    "roberta.encoder.layer.4.attention.self.query.bias",
+    "roberta.encoder.layer.4.attention.self.key.weight",
+    "roberta.encoder.layer.4.attention.self.key.bias",
+    "roberta.encoder.layer.4.attention.self.value.weight",
+    "roberta.encoder.layer.4.attention.self.value.bias",
+    "roberta.encoder.layer.4.attention.output.dense.weight",
+    "roberta.encoder.layer.4.attention.output.dense.bias",
+    "roberta.encoder.layer.4.attention.output.LayerNorm.weight",
+    "roberta.encoder.layer.4.attention.output.LayerNorm.bias",
+    "roberta.encoder.layer.4.intermediate.dense.weight",
+    "roberta.encoder.layer.4.intermediate.dense.bias",
+    "roberta.encoder.layer.4.output.dense.weight",
+    "roberta.encoder.layer.4.output.dense.bias",
+    "roberta.encoder.layer.4.output.LayerNorm.weight",
+    "roberta.encoder.layer.4.output.LayerNorm.bias",
+    "roberta.encoder.layer.5.attention.self.query.weight",
+    "roberta.encoder.layer.5.attention.self.query.bias",
+    "roberta.encoder.layer.5.attention.self.key.weight",
+    "roberta.encoder.layer.5.attention.self.key.bias",
+    "roberta.encoder.layer.5.attention.self.value.weight",
+    "roberta.encoder.layer.5.attention.self.value.bias",
+    "roberta.encoder.layer.5.attention.output.dense.weight",
+    "roberta.encoder.layer.5.attention.output.dense.bias",
+    "roberta.encoder.layer.5.attention.output.LayerNorm.weight",
+    "roberta.encoder.layer.5.attention.output.LayerNorm.bias",
+    "roberta.encoder.layer.5.intermediate.dense.weight",
+    "roberta.encoder.layer.5.intermediate.dense.bias",
+    "roberta.encoder.layer.5.output.dense.weight",
+    "roberta.encoder.layer.5.output.dense.bias",
+    "roberta.encoder.layer.5.output.LayerNorm.weight",
+    "roberta.encoder.layer.5.output.LayerNorm.bias",
+    "roberta.encoder.layer.6.attention.self.query.weight",
+    "roberta.encoder.layer.6.attention.self.query.bias",
+    "roberta.encoder.layer.6.attention.self.key.weight",
+    "roberta.encoder.layer.6.attention.self.key.bias",
+    "roberta.encoder.layer.6.attention.self.value.weight",
+    "roberta.encoder.layer.6.attention.self.value.bias",
+    "roberta.encoder.layer.6.attention.output.dense.weight",
+    "roberta.encoder.layer.6.attention.output.dense.bias",
+    "roberta.encoder.layer.6.attention.output.LayerNorm.weight",
+    "roberta.encoder.layer.6.attention.output.LayerNorm.bias",
+    "roberta.encoder.layer.6.intermediate.dense.weight",
+    "roberta.encoder.layer.6.intermediate.dense.bias",
+    "roberta.encoder.layer.6.output.dense.weight",
+    "roberta.encoder.layer.6.output.dense.bias",
+    "roberta.encoder.layer.6.output.LayerNorm.weight",
+    "roberta.encoder.layer.6.output.LayerNorm.bias",
+    "roberta.encoder.layer.7.attention.self.query.weight",
+    "roberta.encoder.layer.7.attention.self.query.bias",
+    "roberta.encoder.layer.7.attention.self.key.weight",
+    "roberta.encoder.layer.7.attention.self.key.bias",
+    "roberta.encoder.layer.7.attention.self.value.weight",
+    "roberta.encoder.layer.7.attention.self.value.bias",
+    "roberta.encoder.layer.7.attention.output.dense.weight",
+    "roberta.encoder.layer.7.attention.output.dense.bias",
+    "roberta.encoder.layer.7.attention.output.LayerNorm.weight",
+    "roberta.encoder.layer.7.attention.output.LayerNorm.bias",
+    "roberta.encoder.layer.7.intermediate.dense.weight",
+    "roberta.encoder.layer.7.intermediate.dense.bias",
+    "roberta.encoder.layer.7.output.dense.weight",
+    "roberta.encoder.layer.7.output.dense.bias",
+    "roberta.encoder.layer.7.output.LayerNorm.weight",
+    "roberta.encoder.layer.7.output.LayerNorm.bias",
+    "roberta.encoder.layer.8.attention.self.query.weight",
+    "roberta.encoder.layer.8.attention.self.query.bias",
+    "roberta.encoder.layer.8.attention.self.key.weight",
+    "roberta.encoder.layer.8.attention.self.key.bias",
+    "roberta.encoder.layer.8.attention.self.value.weight",
+    "roberta.encoder.layer.8.attention.self.value.bias",
+    "roberta.encoder.layer.8.attention.output.dense.weight",
+    "roberta.encoder.layer.8.attention.output.dense.bias",
+    "roberta.encoder.layer.8.attention.output.LayerNorm.weight",
+    "roberta.encoder.layer.8.attention.output.LayerNorm.bias",
+    "roberta.encoder.layer.8.intermediate.dense.weight",
+    "roberta.encoder.layer.8.intermediate.dense.bias",
+    "roberta.encoder.layer.8.output.dense.weight",
+    "roberta.encoder.layer.8.output.dense.bias",
+    "roberta.encoder.layer.8.output.LayerNorm.weight",
+    "roberta.encoder.layer.8.output.LayerNorm.bias",
+    "roberta.encoder.layer.9.attention.self.query.weight",
+    "roberta.encoder.layer.9.attention.self.query.bias",
+    "roberta.encoder.layer.9.attention.self.key.weight",
+    "roberta.encoder.layer.9.attention.self.key.bias",
+    "roberta.encoder.layer.9.attention.self.value.weight",
+    "roberta.encoder.layer.9.attention.self.value.bias",
+    "roberta.encoder.layer.9.attention.output.dense.weight",
+    "roberta.encoder.layer.9.attention.output.dense.bias",
+    "roberta.encoder.layer.9.attention.output.LayerNorm.weight",
+    "roberta.encoder.layer.9.attention.output.LayerNorm.bias",
+    "roberta.encoder.layer.9.intermediate.dense.weight",
+    "roberta.encoder.layer.9.intermediate.dense.bias",
+    "roberta.encoder.layer.9.output.dense.weight",
+    "roberta.encoder.layer.9.output.dense.bias",
+    "roberta.encoder.layer.9.output.LayerNorm.weight",
+    "roberta.encoder.layer.9.output.LayerNorm.bias",
+    "roberta.encoder.layer.10.attention.self.query.weight",
+    "roberta.encoder.layer.10.attention.self.query.bias",
+    "roberta.encoder.layer.10.attention.self.key.weight",
+    "roberta.encoder.layer.10.attention.self.key.bias",
+    "roberta.encoder.layer.10.attention.self.value.weight",
+    "roberta.encoder.layer.10.attention.self.value.bias",
+    "roberta.encoder.layer.10.attention.output.dense.weight",
+    "roberta.encoder.layer.10.attention.output.dense.bias",
+    "roberta.encoder.layer.10.attention.output.LayerNorm.weight",
+    "roberta.encoder.layer.10.attention.output.LayerNorm.bias",
+    "roberta.encoder.layer.10.intermediate.dense.weight",
+    "roberta.encoder.layer.10.intermediate.dense.bias",
+    "roberta.encoder.layer.10.output.dense.weight",
+    "roberta.encoder.layer.10.output.dense.bias",
+    "roberta.encoder.layer.10.output.LayerNorm.weight",
+    "roberta.encoder.layer.10.output.LayerNorm.bias",
+    "roberta.encoder.layer.11.attention.self.query.weight",
+    "roberta.encoder.layer.11.attention.self.query.bias",
+    "roberta.encoder.layer.11.attention.self.key.weight",
+    "roberta.encoder.layer.11.attention.self.key.bias",
+    "roberta.encoder.layer.11.attention.self.value.weight",
+    "roberta.encoder.layer.11.attention.self.value.bias",
+    "roberta.encoder.layer.11.attention.output.dense.weight",
+    "roberta.encoder.layer.11.attention.output.dense.bias",
+    "roberta.encoder.layer.11.attention.output.LayerNorm.weight",
+    "roberta.encoder.layer.11.attention.output.LayerNorm.bias",
+    "roberta.encoder.layer.11.intermediate.dense.weight",
+    "roberta.encoder.layer.11.intermediate.dense.bias",
+    "roberta.encoder.layer.11.output.dense.weight",
+    "roberta.encoder.layer.11.output.dense.bias",
+    "roberta.encoder.layer.11.output.LayerNorm.weight",
+    "roberta.encoder.layer.11.output.LayerNorm.bias",
+    "classifier.dense.weight",
+    "classifier.dense.bias",
+    "classifier.out_proj.weight",
+    "classifier.out_proj.bias"
+]
+Number of differentiable params: 124.647 million
+per_example_max_grad_norm is 1.2758620689655173 [self.max_grad_norm]
+{'target_epsilon': 0.9998455154404255, 'distortion_PLRV': 1.107092178404392, 'target_delta': 7.4240152043831385e-06, 'C': 1.2758620689655173, 'sample_rate': 0.015204383138576668, 'G_k': 163.26633165829145, 'G_theta': 0.00556657159672235, 'steps': 197.0, 'distortion': 1.3221650289166256, 'noise_multiplier': 1.29970703125, 'sigma': 1.6582469019396555, 'rdp_order': 150.0}
+1.6582469019396555
+1.29970703125
+privacy_args: 
+{
+    "noise_type": "Gaussian",
+    "config_idx": 15,
+    "per_example_max_grad_norm": 0.1,
+    "noise_multiplier": 1.29970703125,
+    "target_epsilon": 0,
+    "target_delta": 7.4240152043831385e-06,
+    "non_private": false,
+    "accounting_mode": "rdp",
+    "clipping_mode": "ghost"
+}
+{'0':'terrible','1':'great'}
+*cls**sent_0*_It_was*mask*.*sep+*
+2: -1
+2: 397 7 3.0
+metrics: 
+{
+    "eval_loss": 0.694809079170227,
+    "eval_acc": 0.5091743119266054
+}
+dev objective eval_acc: 0.5091743119266054
+metrics: 
+{
+    "eval_loss": 1.1433894634246826,
+    "eval_acc": 0.8807339449541285
+}
+dev objective eval_acc: 0.8807339449541285
+metrics: 
+{
+    "eval_loss": 0.9851555824279785,
+    "eval_acc": 0.8899082568807339
+}
+dev objective eval_acc: 0.8899082568807339
+running time: 3310.34 seconds... [about 0.9195388459497028 hours]
+no
+learning rate is 0.0005
+Running command:
+
+CUDA_VISIBLE_DEVICES=2 python -m classification.run_classification_final   --per_device_train_batch_size 170   --task_name sst-2 --model_name_or_path roberta-base   --noise_type Gaussian --config_idx 15   --non_private no --output_dir /mnt/backup/home/qiy22005/PRO/plrvo/scripts/results/classification/sst2/Gaussian.roberta-base.config_15 --overwrite_output_dir   --gradient_accumulation_steps 7 --num_train_epochs 3   --learning_rate 0.0005 --clipping_mode ghost --few_shot_type finetune --data_dir classification/data/original/GLUE-SST-2   --seed 42 --randomly_initialize no --store_grads no --template *cls**sent_0*_It_was*mask*.*sep+*   --attention_only no --static_lm_head no --static_embedding no   --eval_steps 100 --eval_spectrum no --max_spectrum_batches 2 --max_lanczos_iter 2   --weight_decay 0 --lr_decay no --adam_epsilon 1e-08 --max_seq_len 256 --per_device_eval_batch_size 100   --evaluation_strategy steps --evaluate_before_training True --do_train --do_eval --num_sample 1 --num_k 1   --first_sent_limit 200 --other_sent_limit 200 --truncate_head yes 
