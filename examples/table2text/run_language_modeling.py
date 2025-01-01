@@ -165,9 +165,7 @@ def main():
     # Adjust tokenizer and model embeddings.
     print('adapt tokenizer to include [PAD]')
     print(f'before len(tokenizer) = {len(tokenizer)}')
-    tokenizer.padding_side = "left"
     tokenizer.add_special_tokens({'pad_token': '[PAD]'})
-    tokenizer.padding_side = "left"
     print(f'after len(tokenizer) = {len(tokenizer)}')
     print('tokenizer.eos_token:', tokenizer.eos_token, tokenizer.eos_token_id)
     print('tokenizer.bos_token:', tokenizer.bos_token, tokenizer.bos_token_id)
