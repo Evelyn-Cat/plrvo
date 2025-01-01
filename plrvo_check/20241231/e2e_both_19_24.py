@@ -13,7 +13,6 @@ G0 = pd.DataFrame(G0)
 G0.columns = ["gaussian_eps", "gaussian_q", "gaussian_sigma", "clip", "distortion_Gaussian"]
 
 
-
 for jdx, fix_epsilon in enumerate([2.5, 1.9, 1.7, 1.4, 1.1, 0.8]): #  0.7 cannot 
     print(f"\n\n\nfixed epsilon is {fix_epsilon}\n")
     
@@ -39,7 +38,7 @@ for jdx, fix_epsilon in enumerate([2.5, 1.9, 1.7, 1.4, 1.1, 0.8]): #  0.7 cannot
     dict_P["distributions"] = ["Gamma"]
     dict_P.update(dict_G)
     print(dict_P)
-    with open(f"/mnt/backup/home/qiy22005/PRO/plrvo/plrvo/configs/{idx}.json", "w") as json_file:
-        json.dump(dict_P, json_file, indent=4, ensure_ascii=False)
+    # with open(f"/mnt/backup/home/qiy22005/PRO/plrvo/plrvo/configs/{idx}.json", "w") as json_file:
+    #     json.dump(dict_P, json_file, indent=4, ensure_ascii=False)
 
 
