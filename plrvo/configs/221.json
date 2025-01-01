@@ -1,24 +1,12 @@
 {
-    "eps_check": 0.79995453136848,
-    "distortion_PLRV/C": 0.860461807690613,
+    "eps_check": 0.874303874755342,
+    "distortion_PLRV/C": 0.797930880818806,
     "delta": 4.77358868850424e-06,
     "C": 1.18888888888889,
     "q": 0.0097763096340566,
-    "k": 653.779264214047,
-    "theta": 0.0014974791448351,
+    "k": 819.665551839465,
+    "theta": 0.0012876177128219,
     "T": 306.0,
-    "lambda_max": 200.0,
-    "matching_entries/cli": 0.900083526230982,
-    "dist_to_fix_eps": 0.009594376201169097,
-    "idx_P": 622,
-    "a_G": 1,
-    "distributions": [
-        "Gamma"
-    ],
-    "gaussian_eps": 0.790405623798831,
-    "gaussian_q": 0.0097763096340566,
-    "gaussian_sigma": 1.34117058529265,
-    "clip": 0.1,
-    "gaussian_dist/clip": 1.07009930340795,
-    "diff_distortion": 0.20963749571733703
+    "lambda_max": 100.0,
+    "matching_entries/cli": 0.868189481101573
 }

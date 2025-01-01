@@ -4,9 +4,9 @@ import pandas as pd
 
 generate_dict=True
 dataset="sst-2"
-dataset="qnli"
-dataset="mnli"
-dataset="qqp"
+# dataset="qnli"
+# dataset="mnli"
+# dataset="qqp"
 confix_index_start = {
     "sst-2": 111,
     "qnli": 211,
@@ -86,6 +86,7 @@ P0 = P0.sort_values(by='distortion_PLRV/C', ascending=True)
 head_P0 = P0.head(20).index.tolist()
 print(head_P0)
 import random
+random.seed(42)
 random_selection = random.sample(head_P0, 10)
 
 
@@ -94,6 +95,7 @@ for jkdx, index_num in enumerate(random_selection):
     
     if generate_dict:
         with open(f"../configs/{int(jkdx+start_idx)}.json", "w") as json_file:
-            json.dump(dict_P, json_file, indent=4, ensure_ascii=False)
+            json.dump(row, json_file, indent=4, ensure_ascii=False)
     else:
+        print(random_selection)
         print(row)
