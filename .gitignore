@@ -26,7 +26,7 @@ scripts/results*
 *cache*
 examples/classification/data/original/*
 examples/fast-differential-privacy/*
-examples/table2text/prefix-tuning/*
+
 
 examples/KalmanDP/*
 examples/log
