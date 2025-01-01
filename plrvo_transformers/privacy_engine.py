@@ -122,6 +122,9 @@ class PrivacyEngine(object):
             self.noise_multiplier = self.sigma / self.config["C"]
         
         print(f"per_example_max_grad_norm is {self.max_grad_norm} [self.max_grad_norm]")
+        print(self.config)
+        print(self.sigma)
+        print(self.noise_multiplier)
         
         utils.handle_unused_kwargs(unused_kwargs)
         del unused_kwargs

@@ -333,7 +333,7 @@ def main():
     training_args.local_rank=-1
     
     if privacy_args.noise_type == "PLRVO" or privacy_args.noise_type == "Gaussian":
-        print("confirm imported PLRVO")
+        print(f"confirm imported {privacy_args.noise_type}")
         from plrvo_transformers import PrivacyEngine 
         from private_transformers import freeze_isolated_params_for_vit
         assert privacy_args.config_idx > 0

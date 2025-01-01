@@ -1,0 +1,80 @@
+[
+    {
+        "dev": {
+            "eval_loss": 0.694809079170227,
+            "eval_acc": 0.5091743119266054
+        },
+        "loss": 0.0,
+        "learning_rate": 0.0005,
+        "get_training_stats": {
+            "med_clip": null,
+            "max_clip": null,
+            "min_clip": null,
+            "snr": null,
+            "signal": null,
+            "noise": null,
+            "noise_limit": null
+        },
+        "privacy_spent": {
+            "eps_rdp": 0,
+            "alpha_rdp": 1.1,
+            "eps_low": null,
+            "eps_estimate": null,
+            "eps_upper": null
+        },
+        "epoch": 0,
+        "step": 0
+    },
+    {
+        "dev": {
+            "eval_loss": 1.1433894634246826,
+            "eval_acc": 0.8807339449541285
+        },
+        "loss": 0.30262542724609376,
+        "learning_rate": 0.0005,
+        "get_training_stats": {
+            "med_clip": null,
+            "max_clip": null,
+            "min_clip": null,
+            "snr": 0.001965109857640783,
+            "signal": 2.8516845703125,
+            "noise": 1451.1578369140625,
+            "noise_limit": 1451.0643745610632
+        },
+        "privacy_spent": {
+            "eps_rdp": 0.937362474717195,
+            "alpha_rdp": 13.0,
+            "eps_low": 0.6681307894389998,
+            "eps_estimate": 0.7181931794699331,
+            "eps_upper": 0.7682555656085933
+        },
+        "epoch": 1.7758186397984885,
+        "step": 100
+    },
+    {
+        "dev": {
+            "eval_loss": 0.9851555824279785,
+            "eval_acc": 0.8899082568807339
+        },
+        "loss": 0.17569940185546876,
+        "learning_rate": 0.0005,
+        "get_training_stats": {
+            "med_clip": null,
+            "max_clip": null,
+            "min_clip": null,
+            "snr": 0.0018931384161269742,
+            "signal": 2.7471134662628174,
+            "noise": 1451.089599609375,
+            "noise_limit": 1451.0643745610632
+        },
+        "privacy_spent": {
+            "eps_rdp": 1.08584927671817,
+            "alpha_rdp": 12.0,
+            "eps_low": 0.8530569358214181,
+            "eps_estimate": 0.9031287516323412,
+            "eps_upper": 0.953200562286124
+        },
+        "epoch": 2.9874055415617127,
+        "step": 168
+    }
+]

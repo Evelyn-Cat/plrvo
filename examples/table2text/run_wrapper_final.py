@@ -71,8 +71,15 @@ def main(
     seed=42,
     non_private="yes",
 ):
-    non_private="yes" if noise_type == "non" else "no"
-    if non_private:
+    if noise_type == "non" or int(config_idx) == 0:
+        non_private = "yes"
+    elif noise_type == "Gaussian" or noise_type == "PLRVO":
+        assert int(config_idx)>0
+        non_private = "no"
+    else:
+        print("reinput noise type. exit...")
+    
+    if non_private == "yes":
         assert int(config_idx) == 0
     else:
         assert int(config_idx) > 0
@@ -94,7 +101,10 @@ def main(
         num_train_epochs=num_train_epochs,
         seed=seed,
         non_private=non_private,
+<<<<<<< HEAD
+=======
         config_idx=config_idx,
+>>>>>>> main
     )
     print('Running command:')
     print(command)

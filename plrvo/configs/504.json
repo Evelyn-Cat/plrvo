@@ -1,0 +1,23 @@
+{
+    "target_epsilon": 1.3437957963926077,
+    "distortion_PLRV": 1.0762116423548156,
+    "target_delta": 1.18874967309384e-05,
+    "C": 1.2758620689655173,
+    "sample_rate": 0.024345593304961843,
+    "G_k": 71.00502512562815,
+    "G_theta": 0.013273122368599757,
+    "steps": 124.0,
+    "??": 100.0,
+    "distortion": 1.286556018116629,
+    "dist_to_fix_eps": 0.06619843989986385,
+    "a_G": 1,
+    "distributions": [
+        "Gamma"
+    ],
+    "gaussian_eps": 1.333801560100136,
+    "gaussian_q": 0.024345593304961843,
+    "gaussian_sigma": 1.263819095477387,
+    "clip": 5.0,
+    "distortion_Gaussian": 5.041908719646248,
+    "diff_distortion": 3.9656970772914324
+}

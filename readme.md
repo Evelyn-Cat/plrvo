@@ -2,9 +2,9 @@
 
 ## run_7.**.sh is an example to use previous version but check run_config_idx.sh for this update.
 
-1. run config_idx: 2 - 7 for
+1. run config_idx: 15 - 18 for
 
-(1) task_name: qqp, mnli [I will run this by myself: sst-2, qnli]
+(1) task_name: qqp, mnli
 (2) modelname: roberta-large bert-large-uncased [I will run this by myself: roberta-base bert-base-uncased]
 
 
