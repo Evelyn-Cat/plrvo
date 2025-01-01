@@ -4,9 +4,9 @@ import pandas as pd
 
 generate_dict=True
 dataset="sst-2"
-dataset="qnli"
-dataset="mnli"
-dataset="qqp"
+# dataset="qnli"
+# dataset="mnli"
+# dataset="qqp"
 confix_index_start = {
     "sst-2": 111,
     "qnli": 211,
@@ -35,6 +35,7 @@ P0.columns = ["eps_check", "distortion_PLRV/C", "delta", "C", "q", "k", "theta",
 
 
 eps_list = [8, 5, 4, 3, 2.5, 2, 1.5, 1, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3]
+used_ones = []
 for jdx, fix_epsilon in enumerate(eps_list):
     print(f"\n\n\nfixed epsilon is {fix_epsilon}\n")
     
@@ -77,22 +78,25 @@ for jdx, fix_epsilon in enumerate(eps_list):
                 json.dump(dict_P, json_file, indent=4, ensure_ascii=False)
         else:
             print(dict_P)
+        
+        used_ones.append(int(kdx[0]))
     except:
         pass
      
 
 start_idx = idx
 P0 = P0.sort_values(by='distortion_PLRV/C', ascending=True)
-head_P0 = P0.head(20).index.tolist()
-print(head_P0)
+P0_1000 = P0.index.tolist()
+head_P0 = [item for item in P0_1000 if item not in used_ones]
+
 import random
 random.seed(42)
 random_selection = random.sample(head_P0, 10)
 
-
+print(random_selection)
 for jkdx, index_num in enumerate(random_selection):
     row = P0.loc[index_num, :].to_dict()
-    rowp['idx'] = int(index_num)
+    row['idx'] = int(index_num)
     
     if generate_dict:
         with open(f"../configs/{int(jkdx+start_idx)}.json", "w") as json_file:
