@@ -8,7 +8,7 @@ plrvo_search/*
 private_transformers2/*
 results/*
 tests/*
-running*sh
+
 todo
 record.txt
 
@@ -45,7 +45,7 @@ scripts/results/*
 !results/classification/qnli/Gaussian.bert-base-uncased.clip_3.eps_7/final_results.json
 record.txt
 todo
-running*sh
+
 old
 tests/*
 
@@ -60,5 +60,5 @@ __pycache__/
 Thumbs.db
 
 /mnt/backup/home/qiy22005/PRO/plrvo/plrvo/lmo_params/*
-plrvo/mine_right/*
+**mine_right/*
 *.csv
