@@ -14,7 +14,6 @@ taskname=sst2
 modelname=roberta-base
 noise_type=Gaussian
 target_epsilon=2.5
-target_epsilon=2.5
 target_epsilon=1.9
 target_epsilon=1.7
 target_epsilon=1.4
@@ -70,4 +69,4 @@ python -m classification.run_wrapper_final \
     --per_example_max_grad_norm $per_example_max_grad_norm \
     --output_dir $output_dir \
     --gradient_accumulation_steps $gradient_accumulation_steps \
-    --learning_rate 1e-3 2>&1 > $logfile
+    --learning_rate 5e-3 2>&1 > $logfile
