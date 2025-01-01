@@ -58,6 +58,7 @@ def _get_command(
         "qqp": "*cls**sent-_0**mask*,*+sentl_1**sep+*",
     }[task_name]
 
+<<<<<<< HEAD
     if learning_rate is None:
         if non_private.lower() in ('yes', 'y', 'true', 't'):
             learning_rate = 5e-5
@@ -65,6 +66,8 @@ def _get_command(
             learning_rate = 5e-4
     print(f"learning rate is {learning_rate}")
     
+=======
+>>>>>>> main
     cmd = f'''
 CUDA_VISIBLE_DEVICES={gpu_id} python -m classification.run_classification_final \
   --per_device_train_batch_size {per_device_train_batch_size} \
@@ -112,10 +115,16 @@ def main(
     orthogonal_projection_path=None,
     orthogonal_projection_rank=100,
 ):
+<<<<<<< HEAD
     if noise_type == "non" or int(config_idx)==0:
         non_private = "yes"
     elif noise_type == "Gaussian" or noise_type == "PLRVO":
         assert int(config_idx)>0
+=======
+    if noise_type == "non":
+        non_private = "yes"
+    elif noise_type == "Gaussian" or noise_type == "PLRVO" or noise_type == "Laplace":
+>>>>>>> main
         non_private = "no"
     else:
         print("reinput noise type. exit...")

@@ -81,7 +81,6 @@ def main(
     print("Device Name:", torch.cuda.get_device_name(0) if torch.cuda.is_available() else "None")
     print(device)
     
-    
     if noise_type == "PLRVO" or noise_type == "Gaussian":
         print("confirm imported PLRVO")
         from plrvo_transformers import PrivacyEngine 
