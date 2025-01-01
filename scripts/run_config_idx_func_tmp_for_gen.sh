@@ -59,9 +59,9 @@ esac
 #### 4 choose modelname and taskname to run
 # array_modelname=(roberta-large bert-large-uncased)
 # array_modelname=(roberta-base bert-base-uncased)
-array_modelname=(roberta-base)
+# array_modelname=(roberta-base)
 # array_modelname=(roberta-large bert-large-uncased roberta-base bert-base-uncased)
-# array_modelname=(distilgpt2) # distilgpt2, gpt2, gpt2-medium, gpt2-large
+array_modelname=(distilgpt2) # distilgpt2, gpt2, gpt2-medium, gpt2-large
 # array_modelname=(vit)
 ## [fine-tuning] running nlp classification task
 taskname=$taskname
