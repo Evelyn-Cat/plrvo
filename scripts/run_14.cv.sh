@@ -8,11 +8,11 @@ do
 
 bash run_config_idx_func.sh $noise_type $gpu_id $config_idx $taskname $per_device_train_batch_size
 
-for idx in 2 3 4 5 6 7
-do
-    bash run_7.PG.cv.sh PLRVO $idx
-    wait
-done
+# for idx in 2 3 4 5 6 7
+# do
+#     bash run_7.PG.cv.sh PLRVO $idx
+#     wait
+# done
 # bash run_14.PG.cv.sh Gaussian
 # wait
 

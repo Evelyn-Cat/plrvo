@@ -60,7 +60,7 @@ esac
 # array_modelname=(roberta-base)
 # array_modelname=(roberta-large bert-large-uncased roberta-base bert-base-uncased)
 # array_modelname=(distilgpt2) # distilgpt2, gpt2, gpt2-medium, gpt2-large
-array_modelname=(vit)
+# array_modelname=(vit)
 ## [fine-tuning] running nlp classification task
 # taskname=sst2
 # taskname=qnli

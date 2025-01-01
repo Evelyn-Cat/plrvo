@@ -1,7 +1,7 @@
 gpu_id=0
 per_device_train_batch_size=150
 
-for taskname in sst2 qnli
+for taskname in sst2 
 do
     for config_idx in 1 2 3 4 5 6
     do

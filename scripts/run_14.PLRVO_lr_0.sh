@@ -15,7 +15,6 @@ gpu_id=0
 per_device_train_batch_size=170
 lr=5e-5
 
-for taskname in qnli mnli qqp
-do
-    bash run_config_idx_func_lr.sh $noise_type $gpu_id $config_idx $taskname $per_device_train_batch_size $lr
-done
+taskname=sst2
+bash run_config_idx_func_lr.sh $noise_type $gpu_id $config_idx $taskname $per_device_train_batch_size $lr
+
