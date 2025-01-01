@@ -10,6 +10,7 @@
     "lambda_max": 50.0,
     "matching_entries/cli": 0.85543186304981,
     "dist_to_fix_eps": 0.002926219581142031,
+    "idx_P": 1537,
     "a_G": 1,
     "distributions": [
         "Gamma"
