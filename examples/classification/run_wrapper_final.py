@@ -112,9 +112,10 @@ def main(
     orthogonal_projection_path=None,
     orthogonal_projection_rank=100,
 ):
-    if noise_type == "non":
+    if noise_type == "non" or int(config_idx)==0:
         non_private = "yes"
-    elif noise_type == "Gaussian" or noise_type == "PLRVO" or noise_type == "Laplace":
+    elif noise_type == "Gaussian" or noise_type == "PLRVO":
+        assert int(config_idx)>0
         non_private = "no"
     else:
         print("reinput noise type. exit...")

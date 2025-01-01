@@ -137,6 +137,7 @@ def main():
 
     # Tokenizer; `bos_token` and `eos_token` is the same for GPT2; both are 50256.
     tokenizer = GPT2Tokenizer.from_pretrained(model_args.model_name_or_path, cache_dir=model_args.cache_dir)
+    tokenizer.padding_side = "left"
 
     # Model.
     gpt2 = GPT2LMHeadModel.from_pretrained(

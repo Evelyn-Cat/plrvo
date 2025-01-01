@@ -8,18 +8,18 @@
 
 export TRANSFORMERS_CACHE=cache
 
-gpu_id=0
-per_device_train_batch_size=170
-taskname=sst2
+gpu_id=1
+per_device_train_batch_size=340
+taskname=sst-2
 modelname=roberta-base
 noise_type=Gaussian
 target_epsilon=2.5
-target_epsilon=1.9
-target_epsilon=1.7
-target_epsilon=1.4
-target_epsilon=1.1
-target_epsilon=0.8
-target_epsilon=0.7
+# target_epsilon=1.9
+# target_epsilon=1.7
+# target_epsilon=1.4
+# target_epsilon=1.1
+# target_epsilon=0.8
+# target_epsilon=0.7
 per_example_max_grad_norm=0.1
 batch_size=1024
 current_path="$PWD"
@@ -59,7 +59,7 @@ echo "gradient_accumulation_steps is $gradient_accumulation_steps"
 
 #### 4 running the tasks
 cd ../examples/
-python -m classification.run_wrapper_final \
+python -m classification.run_wrapper \
     --gpu_id $gpu_id \
     --per_device_train_batch_size $per_device_train_batch_size \
     --task_name $taskname \
