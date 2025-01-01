@@ -4,9 +4,9 @@ import pandas as pd
 
 generate_dict=True
 dataset="sst-2"
-# dataset="qnli"
-# dataset="mnli"
-# dataset="qqp"
+dataset="qnli"
+dataset="mnli"
+dataset="qqp"
 confix_index_start = {
     "sst-2": 111,
     "qnli": 211,
@@ -99,8 +99,30 @@ for jkdx, index_num in enumerate(random_selection):
     row['idx'] = int(index_num)
     
     if generate_dict:
-        with open(f"../configs/{int(jkdx+start_idx)}.json", "w") as json_file:
+        output_idx = int(jkdx+start_idx+1)
+        with open(f"../configs/{output_idx}.json", "w") as json_file:
             json.dump(row, json_file, indent=4, ensure_ascii=False)
     else:
-        print(random_selection)
+        print(index_num)
+        print(row)
+
+
+
+start_idx = int(output_idx+1)
+print(start_idx)
+print(start_idx)
+P0 = P0.sort_values(by='eps_check', ascending=True)
+interval = len(P0.index.tolist()) // 10
+selected_values = P0['eps_check'].iloc[::interval].index.tolist()
+print(selected_values)
+
+for okkdx, index_num in enumerate(selected_values):
+    row = P0.loc[index_num, :].to_dict()
+    row['idx'] = int(index_num)
+    
+    if generate_dict:
+        with open(f"../configs/{int(okkdx+start_idx)}.json", "w") as json_file:
+            json.dump(row, json_file, indent=4, ensure_ascii=False)
+    else:
+        print(index_num)
         print(row)
