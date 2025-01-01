@@ -1,0 +1,82 @@
+[
+    {
+        "dev": {
+            "eval_loss": 0.694766104221344,
+            "eval_acc": 0.5053999633900788
+        },
+        "loss": 0.0,
+        "learning_rate": 5e-05,
+        "get_training_stats": {
+            "med_clip": null,
+            "max_clip": null,
+            "min_clip": null,
+            "snr": null,
+            "signal": null,
+            "noise": null,
+            "noise_limit": null
+        },
+        "privacy_spent": {},
+        "epoch": 0,
+        "step": 0
+    },
+    {
+        "dev": {
+            "eval_loss": 1.0333716869354248,
+            "eval_acc": 0.8729635731283177
+        },
+        "loss": 0.2541461639404297,
+        "learning_rate": 5e-05,
+        "get_training_stats": {
+            "med_clip": null,
+            "max_clip": null,
+            "min_clip": null,
+            "snr": Infinity,
+            "signal": null,
+            "noise": null,
+            "noise_limit": null
+        },
+        "privacy_spent": {},
+        "epoch": 1.1361426256077796,
+        "step": 100
+    },
+    {
+        "dev": {
+            "eval_loss": 0.9858194589614868,
+            "eval_acc": 0.8894380377082189
+        },
+        "loss": 0.21645851135253907,
+        "learning_rate": 5e-05,
+        "get_training_stats": {
+            "med_clip": null,
+            "max_clip": null,
+            "min_clip": null,
+            "snr": Infinity,
+            "signal": null,
+            "noise": null,
+            "noise_limit": null
+        },
+        "privacy_spent": {},
+        "epoch": 2.272285251215559,
+        "step": 200
+    },
+    {
+        "dev": {
+            "eval_loss": 0.9260936379432678,
+            "eval_acc": 0.8958447739337361
+        },
+        "loss": 0.12160198974609375,
+        "learning_rate": 5e-05,
+        "get_training_stats": {
+            "med_clip": null,
+            "max_clip": null,
+            "min_clip": null,
+            "snr": Infinity,
+            "signal": null,
+            "noise": null,
+            "noise_limit": null
+        },
+        "privacy_spent": {},
+        "epoch": 2.99837925445705,
+        "step": 264
+    }
+]
