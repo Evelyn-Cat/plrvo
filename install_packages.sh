@@ -16,21 +16,22 @@
 # fairscale==0.4
 
 # mine
-pip install transformers
-pip install numpy
-pip install scipy
-pip install jupyterlab
-pip install jupyter
-pip install opacus==1.0
-pip install opt_einsum
-pip install pytest
-pip install pydantic==1.10
-pip install tqdm
-pip install fairscale==0.4
-pip install ml-swissknife
-pip install torchvision
-pip install torch==1.11.0+cu113 -f https://download.pytorch.org/whl/torch_stable.html
-pip install prv-accountant
-pip install deepspeed
-pip install timm
+pip3 install transformers
+pip3 install numpy
+pip3 install scipy
+pip3 install jupyterlab
+pip3 install jupyter
+pip3 install opacus==1.0
+pip3 install opt_einsum
+pip3 install pytest
+pip3 install pydantic==1.10
+pip3 install tqdm
+pip3 install fairscale==0.4
+pip3 install ml-swissknife
+pip3 install torchvision
+pip3 install sentence-transformers
+pip3 install torch==1.11.0+cu113 -f https://download.pytorch.org/whl/torch_stable.html
+pip3 install prv-accountant
+pip3 install deepspeed
+pip3 install timm
 
