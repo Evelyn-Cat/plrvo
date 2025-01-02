@@ -70,7 +70,7 @@ CUDA_VISIBLE_DEVICES={gpu_id} python -m classification.run_classification_final 
   --attention_only {attention_only} --static_lm_head {static_lm_head} --static_embedding {static_embedding} \
   --eval_steps {eval_steps} --eval_spectrum {eval_spectrum} --max_spectrum_batches {max_spectrum_batches} --max_lanczos_iter {max_lanczos_iter} \
   --weight_decay 0 --lr_decay no --adam_epsilon 1e-08 --max_seq_len 256 --per_device_eval_batch_size 100 \
-  --evaluation_strategy steps --evaluate_before_training True --do_train --do_eval --num_sample 1 --num_k 1 \
+  --evaluation_strategy epoch --evaluate_before_training True --do_train --do_eval --num_sample 1 --num_k 1 \
   --first_sent_limit 200 --other_sent_limit 200 --truncate_head yes '''
     if orthogonal_projection_path is not None:
         cmd += f' --orthogonal_projection_path {orthogonal_projection_path}'
@@ -98,7 +98,7 @@ def main(
     attention_only="no",
     static_lm_head="no",
     static_embedding="no",
-    eval_steps=100,
+    eval_steps=1,
     eval_spectrum="no",
     max_spectrum_batches=2,
     max_lanczos_iter=2,
