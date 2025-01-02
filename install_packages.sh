@@ -30,11 +30,11 @@ pip3 install fairscale==0.4
 pip3 install ml-swissknife
 pip3 install torchvision
 pip3 install sentence-transformers
-pip3 install torch==1.11.0+cu113 -f https://download.pytorch.org/whl/torch_stable.html
 pip3 install prv-accountant
 pip3 install deepspeed
 pip3 install timm
 pip3 install transformers[torch]
+pip3 install torch==1.11.0+cu113 -f https://download.pytorch.org/whl/torch_stable.html
 
 cd examples/classification/data
 bash download_dataset.sh
