@@ -100,11 +100,7 @@ def main(
         learning_rate=learning_rate,
         num_train_epochs=num_train_epochs,
         seed=seed,
-        non_private=non_private,
-<<<<<<< HEAD
-=======
-        config_idx=config_idx,
->>>>>>> main
+        non_private=non_private
     )
     print('Running command:')
     print(command)
