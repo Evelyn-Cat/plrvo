@@ -96,7 +96,7 @@ if [ "$task_type" == "nlp" ]; then
     #     --gradient_accumulation_steps $gradient_accumulation_steps 2>&1 > $logfile"
     # echo $cmd
     
-    python -m $running_module \
+    python3 -m $running_module \
         --gpu_id $gpu_id \
         --per_device_train_batch_size $per_device_train_batch_size \
         --task_name $taskname \
@@ -109,7 +109,7 @@ if [ "$task_type" == "nlp" ]; then
 else
     echo $running_module
     
-    CUDA_VISIBLE_DEVICES=$gpu_id python -m $running_module \
+    CUDA_VISIBLE_DEVICES=$gpu_id python3 -m $running_module \
         --per_device_train_batch_size $per_device_train_batch_size \
         --task_name $taskname \
         --model_name_or_path $modelname \

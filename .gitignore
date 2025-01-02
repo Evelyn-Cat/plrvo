@@ -11,7 +11,7 @@ tests/*
 
 todo
 record.txt
-
+examples/GEM-metrics/*
 
 **.mat
 **.zip

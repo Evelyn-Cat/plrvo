@@ -37,7 +37,7 @@ def _get_command(
         data_dir = f"table2text/prefix-tuning/data/{foldername}"
     
     cmd = f'''
-CUDA_VISIBLE_DEVICES={gpu_id} python -m table2text.run_language_modeling \
+CUDA_VISIBLE_DEVICES={gpu_id} python3 -m table2text.run_language_modeling \
   --per_device_train_batch_size {per_device_train_batch_size} --tokenizer_name {model_name_or_path} \
   --task_mode {task_name} --model_name_or_path {model_name_or_path} \
   --noise_type {noise_type} --config_idx {config_idx} \
@@ -100,11 +100,7 @@ def main(
         learning_rate=learning_rate,
         num_train_epochs=num_train_epochs,
         seed=seed,
-        non_private=non_private,
-<<<<<<< HEAD
-=======
-        config_idx=config_idx,
->>>>>>> main
+        non_private=non_private
     )
     print('Running command:')
     print(command)

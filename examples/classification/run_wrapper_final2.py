@@ -59,7 +59,7 @@ def _get_command(
     }[task_name]
 
     cmd = f'''
-CUDA_VISIBLE_DEVICES={gpu_id} python -m classification.run_classification_final2 \
+CUDA_VISIBLE_DEVICES={gpu_id} python3 -m classification.run_classification_final2 \
   --per_device_train_batch_size {per_device_train_batch_size} \
   --task_name {task_name} --model_name_or_path {model_name_or_path} \
   --noise_type {noise_type} \
