@@ -20,5 +20,7 @@
     "gaussian_sigma": 0.666333166583292,
     "clip": 0.1,
     "gaussian_dist/clip": 0.531656945967692,
-    "diff_distortion": -0.2735624286411771
+    "diff_distortion": -0.2735624286411771,
+    "paired_noise_multiplier": 1.2644775390624998,
+    "paired_sigma": 1.5033232964409735
 }

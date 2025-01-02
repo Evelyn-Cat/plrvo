@@ -19,8 +19,9 @@ noise_type=Gaussian
 # target_epsilon=1.4
 # target_epsilon=1.1
 # target_epsilon=0.8
-# target_epsilon=0.7
-target_epsilon=0.2
+target_epsilon=0.7
+# target_epsilon=0.2
+noise_multiplier=1.5701171875
 per_example_max_grad_norm=0.1
 batch_size=1024
 current_path="$PWD"
@@ -65,8 +66,7 @@ python -m classification.run_wrapper \
     --per_device_train_batch_size $per_device_train_batch_size \
     --task_name $taskname \
     --model_name_or_path $modelname \
-    --noise_type $noise_type \
-    --target_epsilon $target_epsilon  \
+    --noise_multiplier $noise_multiplier  \
     --per_example_max_grad_norm $per_example_max_grad_norm \
     --output_dir $output_dir \
     --gradient_accumulation_steps $gradient_accumulation_steps \

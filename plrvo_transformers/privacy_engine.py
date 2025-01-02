@@ -118,7 +118,7 @@ class PrivacyEngine(object):
             self.sigma = 0
             self.noise_multiplier = 0
         elif noise_type == "Gaussian":
-            self.sigma = self.config["sigma"]
+            self.sigma = self.config["paired_sigma"]
             self.noise_multiplier = self.sigma / self.config["C"]
         
         print(f"per_example_max_grad_norm is {self.max_grad_norm} [self.max_grad_norm]")
