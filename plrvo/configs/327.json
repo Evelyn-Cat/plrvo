@@ -9,5 +9,7 @@
     "T": 1150.0,
     "lambda_max": 200.0,
     "matching_entries/cli": 1.00214447064509,
-    "idx": 1451
+    "idx": 1451,
+    "paired_noise_multiplier": 1.480615234375,
+    "paired_sigma": 1.7602870008680573
 }

@@ -6,6 +6,8 @@ hyperparameters = {
         "steps": 198,
         "target_delta": 1/(2*67349),
         "epoch": 3,
+        "start": 101,
+        "end": 200,
     },
     "sst2": {
         "datasize": 67349,
@@ -14,6 +16,8 @@ hyperparameters = {
         "steps": 198,
         "target_delta": 1/(2*67349),
         "epoch": 3,
+        "start": 101,
+        "end": 200,
     },
     "qnli": {
         "datasize": 104743,
@@ -22,6 +26,8 @@ hyperparameters = {
         "steps": 307,
         "target_delta": 1/(2*104743),
         "epoch": 3,
+        "start": 201,
+        "end": 300,
     },
     "mnli": {
         "datasize": 392702,
@@ -30,6 +36,8 @@ hyperparameters = {
         "steps": 1151,
         "target_delta": 1/(2*392702),
         "epoch": 3,
+        "start": 301,
+        "end": 400,
     },
     "qqp": {
         "datasize": 363847,
@@ -38,6 +46,8 @@ hyperparameters = {
         "steps": 1066,
         "target_delta": 1/(2*363847),
         "epoch": 3,
+        "start": 401,
+        "end": 500,
     },
     "e2e": {
         "datasize": 42061,
@@ -46,6 +56,8 @@ hyperparameters = {
         "steps": 124,
         "target_delta": 1/(2*42061),
         "epoch": 3,
+        "start": 501,
+        "end": 600,
     },
     "dart": {
         "datasize": 93187,
@@ -54,6 +66,8 @@ hyperparameters = {
         "steps": 274,
         "target_delta": 1/(2*93187),
         "epoch": 3,
+        "start": 601,
+        "end": 700,
     },
     "cifar10": {
         "datasize": 50000,
@@ -62,6 +76,8 @@ hyperparameters = {
         "steps": 147,
         "target_delta": 1/(2*50000),
         "epoch": 3,
+        "start": 701,
+        "end": 800,
     },
     "p100": {
         "datasize": 10000,
@@ -70,5 +86,7 @@ hyperparameters = {
         "steps": 30,
         "target_delta": 1/(2*10000),
         "epoch": 3,
+        "start": 801,
+        "end": 899,
     }
 }
