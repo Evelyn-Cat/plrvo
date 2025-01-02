@@ -34,6 +34,7 @@ pip3 install torch==1.11.0+cu113 -f https://download.pytorch.org/whl/torch_stabl
 pip3 install prv-accountant
 pip3 install deepspeed
 pip3 install timm
+pip3 install transformers[torch]
 
 cd examples/classification/data
 bash download_dataset.sh
