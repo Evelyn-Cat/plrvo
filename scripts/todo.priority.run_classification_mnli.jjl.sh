@@ -46,7 +46,6 @@ bash run_config_idx_func_lr_roberta_base.sh $noise_type $gpu_id $config_idx $tas
 wait
 
 
-
 ## set 3
 config_idx=323
 per_device_train_batch_size=170 # suggestion: memory 40G and running base model
@@ -70,8 +69,6 @@ bash run_config_idx_func_lr_roberta_base.sh $noise_type $gpu_id $config_idx $tas
 wait
 
 
-
-
 ## set 4
 config_idx=323
 per_device_train_batch_size=96 # suggestion: memory 80G and running large model
@@ -92,16 +89,27 @@ gpu_id=3
 lr=5e-6
 bash run_config_idx_func_lr_bert_large.sh $noise_type $gpu_id $config_idx $taskname $per_device_train_batch_size $lr &
 
+wait
 
+# while true; do
+#     gpu_id=7
+#     noise_type=PLRVO
+#     taskname=mnli
+#     config_idx=324
 
+#     lr=5e-6
+#     per_device_train_batch_size=96 # suggestion: memory 80G and running large model
+#     bash run_config_idx_func_lr_roberta_large.sh $noise_type $gpu_id $config_idx $taskname $per_device_train_batch_size $lr &
+# done
 
-while true; do
-    gpu_id=7
-    noise_type=PLRVO
-    taskname=mnli
-    config_idx=324
-
-    lr=5e-6
-    per_device_train_batch_size=96 # suggestion: memory 80G and running large model
-    bash run_config_idx_func_lr_roberta_large.sh $noise_type $gpu_id $config_idx $taskname $per_device_train_batch_size $lr &
-done
+python3 -c "
+import torch
+import time
+while True:
+    for i in range(torch.cuda.device_count()):
+        device = torch.device(f'cuda:{i}')
+        print(f'Starting computation on GPU {i}')
+        dummy_data = torch.randn(10000, 10000, device=device)
+        dummy_data = torch.matmul(dummy_data, dummy_data)  # Heavy computation
+"
+exit
