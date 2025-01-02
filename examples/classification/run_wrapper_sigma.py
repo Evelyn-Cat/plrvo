@@ -58,7 +58,7 @@ def _get_command(
     factor = task_name_to_factor[task_name]
 
     if batch_size is None:
-        base_batch_size = 1000
+        base_batch_size = 1024
         # This batch size selection roughly ensures the sampling rates on different
         # datasets are in the same ballpark.
         batch_size = int(base_batch_size * factor)
@@ -84,9 +84,9 @@ def _get_command(
 
     # Epochs chosen roughly to match e2e number of updates. We didn't hyperparameter tune on classification tasks :)
     cmd = f'''
-CUDA_VISIBLE_DEVICES={gpu_id} python3 -m classification.run_classification \
+CUDA_VISIBLE_DEVICES={gpu_id} python3 -m classification.run_classification_sigma \
   --task_name {task_name} \
-  --target_epsilon {target_epsilon} \
+  --noise_multiplier {noise_multiplier} \
   --data_dir {data_dir} \
   --output_dir {output_dir} \
   --overwrite_output_dir \

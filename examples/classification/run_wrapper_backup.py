@@ -81,7 +81,7 @@ def _get_command(
 
     # Epochs chosen roughly to match e2e number of updates. We didn't hyperparameter tune on classification tasks :)
     cmd = f'''
-CUDA_VISIBLE_DEVICES={gpu_id} python -m classification.run_classification2 \
+CUDA_VISIBLE_DEVICES={gpu_id} python3 -m classification.run_classification2 \
   --task_name {task_name} \
   --data_dir {data_dir} \
   --output_dir {output_dir} \

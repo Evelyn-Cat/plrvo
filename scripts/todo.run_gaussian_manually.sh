@@ -54,7 +54,7 @@ echo "gradient_accumulation_steps is $gradient_accumulation_steps"
 
 #### 4 running the tasks
 cd ../examples/
-python -m classification.run_wrapper \
+python3 -m classification.run_wrapper \
     --gpu_id $gpu_id \
     --per_device_train_batch_size $per_device_train_batch_size \
     --task_name $taskname \
