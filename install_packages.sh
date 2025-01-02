@@ -35,3 +35,8 @@ pip3 install prv-accountant
 pip3 install deepspeed
 pip3 install timm
 
+cd examples/classification/data
+bash download_dataset.sh
+
+cd examples/table2text/prefix-tuning
+tar -xvf data.tar
