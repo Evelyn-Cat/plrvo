@@ -35,9 +35,11 @@ pip3 install deepspeed
 pip3 install timm
 pip3 install transformers[torch]
 pip3 install torch==1.11.0+cu113 -f https://download.pytorch.org/whl/torch_stable.html
+pip3 install ml_swissknife
 
 cd examples/classification/data
 bash download_dataset.sh
+
 
 cd examples/table2text/prefix-tuning
 tar -xvf data.tar
