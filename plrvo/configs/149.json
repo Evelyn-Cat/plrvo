@@ -1,0 +1,18 @@
+{
+    "eps_check": 0.7999,
+    "distortion_PLRV/C": 0.68153,
+    "delta": 7.424e-06,
+    "C": 0.64444,
+    "q": 0.015204,
+    "k": 103.47,
+    "theta": 0.01432,
+    "T": 197.0,
+    "lambda_max": 100.0,
+    "matching_entries/cli": 1.1649,
+    "dist_to_fix_eps": 9.999999999998899e-05,
+    "idx_P": 89643,
+    "a_G": 1,
+    "distributions": [
+        "Gamma"
+    ]
+}
