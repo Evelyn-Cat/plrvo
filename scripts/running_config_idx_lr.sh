@@ -104,7 +104,7 @@ if [ "$task_type" == "nlp" ]; then
         --noise_type $noise_type \
         --config_idx $config_idx  \
         --output_dir $output_dir \
-        --learning_rate $lr \
+        --lr $lr \
         --gradient_accumulation_steps $gradient_accumulation_steps 2>&1 > $logfile
 else
     echo $running_module
@@ -116,7 +116,7 @@ else
         --noise_type $noise_type \
         --config_idx $config_idx \
         --output_dir $output_dir \
-        --learning_rate $lr \
+        --lr $lr \
         --batch_size $batch_size 2>&1 > $logfile
 fi
 
