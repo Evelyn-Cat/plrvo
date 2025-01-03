@@ -1,4 +1,3 @@
-# latest
 from typing import Dict, List, Any, Optional, Literal, Union
 from itertools import product
 import pandas as pd
@@ -14,7 +13,7 @@ from tqdm import tqdm
 # from plrvo_transformers.accountant import accounting_manager
 # from plrvo_transformers.accountant import rdp_accounting
 
-import sys;sys.path.append("/mnt/backup/home/qiy22005/PRO/plrvo")
+import sys;sys.path.append("..")
 from private_transformers.accountant import accounting_manager
 from private_transformers.accountant import rdp_accounting
 
@@ -120,6 +119,13 @@ class plrv():
 
         if self.debug_mode:
             print(f"Paried sigma3:\t{self.sigma3}")
+    
+    def accountant(
+        self,
+    ):  
+        # TODO Nicholas
+        pass
+
 
 if __name__ == "__main__":
     try:
@@ -163,4 +169,5 @@ if __name__ == "__main__":
             debug_mode=True,
             alphas=array_alphas,
         )
-        n_p.pairs(return_noise_type=["g"], figures=False)
+        # n_p.pairs(return_noise_type=["g"], figures=False)
+        epsilon = n_p.accountant()
