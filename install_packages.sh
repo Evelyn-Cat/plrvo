@@ -16,6 +16,8 @@
 # fairscale==0.4
 
 # mine
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+. "$HOME/.cargo/env"
 pip3 install transformers
 pip3 install numpy
 pip3 install scipy
@@ -35,7 +37,6 @@ pip3 install deepspeed
 pip3 install timm
 pip3 install transformers[torch]
 pip3 install torch==1.11.0+cu113 -f https://download.pytorch.org/whl/torch_stable.html
-pip3 install ml_swissknife
 
 cd examples/classification/data
 bash download_dataset.sh
